@@ -1,9 +1,5 @@
 #!/bin/bash
 echo "++++ STARTING ++++"
-
-sudo echo "douglas ALL=(ALL:ALL) ALL" > /etc/sudoers
-sudo echo "douglas ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers
-
 sudo pacman -Sy
 sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm
 
