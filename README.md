@@ -1,4 +1,4 @@
-# ARCH LINUX: KDE Plasma
+# arch
 
 ### ARCH iso 2022-08-05
 do not run pacstrap or pacman before pacman-init.service has finished
@@ -23,6 +23,3 @@ After all:
 ```:CocInstall coc-java coc-json coc-python coc-snippets coc-vimlsp```
 
 Run ```:CocConfig```
-
-### Chrome
-run ```pacman -U google-chrome..last-version..zst```
