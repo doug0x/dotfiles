@@ -5,7 +5,7 @@ sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm
 
 sudo systemctl enable sddm
 
-sudo pacman -S plasma mpv atril neovim gedit deepin-screenshot fzf deepin-image-viewer python-pip xsel alacritty tmux npm fish wget obs
+sudo pacman -S plasma mpv atril neovim gedit deepin-screenshot deepin-image-viewer python-pip xsel alacritty tmux npm fish wget obs-studio
 # swi-prolog unixodbc texstudio texlive-most code
 
 # node support
@@ -19,7 +19,6 @@ sudo npm i -g pyright
 sudo pip install pynvim 
 
 # hidden folders are here
-mkdir /home/douglas/.config
 mkdir /home/douglas/.clones
 
 cd /home/douglas/.clones
@@ -45,7 +44,7 @@ mkdir /home/douglas/.config/tmux
 mkdir /home/douglas/.config/tmux/plug
 mkdir /home/douglas/.config/fish/conf.d
 
-cp tmux-conf.txt /home/douglas/.tmux.conf
+cp tmux.conf /home/douglas/.tmux.conf
 touch /home/douglas/.config/fish/conf.d/tmux.fish
 
 echo "
@@ -56,12 +55,12 @@ if not set -q TMUX
 end" > /home/douglas/.config/fish/conf.d/tmux.fish
 
 # ALACRITTY
-cp alacritty-conf.txt /home/douglas/.alacritty.yml
+cp alacritty-conf.yml /home/douglas/.alacritty.yml
 
 # bashrc and bash_profile
 echo "
 alias up='sudo pacman -Syyu'
-alias vv='nvim'" > /home/douglas/.bashrc
+alias vv='nvim'" >> /home/douglas/.bashrc
 
 echo "
 export LC_ALL=en_US.UTF-8  
@@ -71,7 +70,7 @@ export LANG=en_US.UTF-8
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1=\"\W\[\033[31m\]\$(parse_git_branch)\[\033[00m\]  \"" > /home/douglas/.bash_profile
+export PS1=\"\W\[\033[31m\]\$(parse_git_branch)\[\033[00m\]  \"" >> /home/douglas/.bash_profile
 
 
 echo "++++ STARTING NVIM CONFIG ++++"
@@ -102,7 +101,7 @@ cd /home/toolazy/got
 sudo mkdir /usr/local/share/lombok
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
 
-cp kglobalshortcutsrc /home/douglas/.config kglobalshortcutsrc
+cp kglobalshortcutsrc /home/douglas/.config/kglobalshortcutsrc
 cp plugin.vim /home/douglas/.config/nvim/plugs/plugin-config.vim
 cp settings.vim /home/douglas/.config/nvim/settings/settings.vim
 cp mappings.vim /home/douglas/.config/nvim/keys/mappings.vim
