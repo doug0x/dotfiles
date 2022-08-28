@@ -19,15 +19,15 @@ select opt in "Yes" "No"; do
    case $opt in
       Yes )
          if [ -f "/home/$user/.ssh/id_$key.pub" ]; then
-            cp /home/$user/.ssh/id_$key.pub /home/douglas/sshkey.txt
-            echo "Your ssh public key is on home, named as \"sshkey\""
+            sudo cp /home/$user/.ssh/id_$key.pub /home/$user/sshkey.txt
+            echo "Your ssh public key is in the home, named as \"sshkey\""
             echo "do it: https://github.com/settings/ssh/new"
          else
             ssh-keygen -t $key -b 4096 -C $email
             eval "$(ssh-agent -s)"
             ssh-add /home/$user/.ssh/id_$key
-            cp /home/$user/.ssh/id_$key.pub /home/douglas/sshkey.txt
-            echo "Your ssh public key is on home, named as \"sshkey\""
+            sudo cp /home/$user/.ssh/id_$key.pub /home/$user/sshkey.txt
+            echo "Your ssh public key is in the home, named as \"sshkey\""
             echo "do it: https://github.com/settings/ssh/new"
          fi
          break;;

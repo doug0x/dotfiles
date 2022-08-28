@@ -5,11 +5,11 @@ echo -n "Enter your user: "
 read user
 
 sudo pacman -Sy
-yes | sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm
+sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm plasma
 
 sudo systemctl enable sddm
 
-yes | sudo pacman -S plasma mpv atril neovim gedit deepin-screenshot deepin-image-viewer python-pip xsel alacritty tmux npm fish wget obs-studio
+yes | sudo pacman -S mpv atril neovim gedit deepin-screenshot deepin-image-viewer python-pip xsel alacritty tmux npm fish wget obs-studio
 # swi-prolog unixodbc texstudio texlive-most code
 
 # node support
@@ -38,7 +38,7 @@ done
 cd /home/toolazy/got
 
 # fzf
-if [-f "/usr/bin/fish"]; then
+if [ -f "/usr/bin/fish" ]; then
    bash /home/$user/.clones/fzf/install
 else
    yes | sudo pacman -S fish
@@ -104,7 +104,7 @@ git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome/
 makepkg -s
 gg=$(find -name "*.zst")
-sudo pacman -U $gg
+yes | sudo pacman -U $gg
 
 cd /home/toolazy/got
 echo ""
