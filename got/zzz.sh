@@ -5,7 +5,8 @@ echo -n "Enter your user: "
 read user
 
 sudo pacman -Sy
-sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm plasma
+yes | sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm
+echo -e "\n" | sudo pacman -S plasma
 
 sudo systemctl enable sddm
 
@@ -39,10 +40,10 @@ cd /home/toolazy/got
 
 # fzf
 if [ -f "/usr/bin/fish" ]; then
-   bash /home/$user/.clones/fzf/install
+   yes | bash /home/$user/.clones/fzf/install
 else
    yes | sudo pacman -S fish
-   bash /home/$user/.clones/fzf/install
+   yes | bash /home/$user/.clones/fzf/install
 fi
 
 # TMUX
