@@ -52,26 +52,10 @@ if not set -q TMUX
     set -g TMUX tmux new-session -d -s develop
     eval $TMUX
     tmux attach-session -d -t develop
-end" > /home/douglas/.config/fish/conf.d/tmux.fish
+end" >> /home/douglas/.config/fish/conf.d/tmux.fish
 
 # ALACRITTY
 cp alacritty-conf.yml /home/douglas/.alacritty.yml
-
-# bashrc and bash_profile
-echo "
-alias up='sudo pacman -Syyu'
-alias vv='nvim'" >> /home/douglas/.bashrc
-
-echo "
-export LC_ALL=en_US.UTF-8  
-export LANG=en_US.UTF-8
-
-# Git branch in prompt.
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-export PS1=\"\W\[\033[31m\]\$(parse_git_branch)\[\033[00m\]  \"" >> /home/douglas/.bash_profile
-
 
 echo "++++ STARTING NVIM CONFIG ++++"
 
@@ -107,6 +91,7 @@ cp settings.vim /home/douglas/.config/nvim/settings/settings.vim
 cp mappings.vim /home/douglas/.config/nvim/keys/mappings.vim
 cp coc.vim /home/douglas/.config/nvim/plugs/coc.vim
 cp init.vim /home/douglas/.config/nvim/init.vim
+cp sd.fish /home/douglas/.config/fish/functions/sd.fish
 
 cd /home/douglas/.clones
 git clone https://aur.archlinux.org/google-chrome.git

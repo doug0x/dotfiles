@@ -15,13 +15,8 @@ set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
 set laststatus=0                        " Always display the status line
 set number                              " Line numbers
-set cursorline
-hi Search guibg=#ff00dd guifg=#000000
-hi Visual guifg=White guibg=#9a1ac8 gui=none
-hi Pmenu guibg=#0e0f26
-hi PmenuSel guibg=#8a8500
- 
-set background=dark                      " tell vim what the background color looks like
+set cursorline                          " Line highlight"
+set background=dark                     " tell vim what the background color looks like
 set showtabline=2                       " Always show tabs
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
 set nobackup                            " This is recommended by coc
@@ -30,7 +25,7 @@ set updatetime=300                      " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
 set formatoptions-=cro                  " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
-"set autochdir                           " Your working directory will always be the same as your working directory
+"set autochdir                          " Your working directory will always be the same as your working directory
  
 au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vim alternatively you can run :source $MYVIMRC
  
