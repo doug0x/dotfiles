@@ -1,11 +1,15 @@
 #!/bin/bash
 echo "++++ STARTING ++++"
+echo ""
+echo -n "Enter your user: "
+read user
+
 sudo pacman -Sy
-sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm
+yes | sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm
 
 sudo systemctl enable sddm
 
-sudo pacman -S plasma mpv atril neovim gedit deepin-screenshot deepin-image-viewer python-pip xsel alacritty tmux npm fish wget obs-studio
+yes | sudo pacman -S plasma mpv atril neovim gedit deepin-screenshot deepin-image-viewer python-pip xsel alacritty tmux npm fish wget obs-studio
 # swi-prolog unixodbc texstudio texlive-most code
 
 # node support
@@ -18,12 +22,12 @@ sudo npm i -g pyright
 # python support
 sudo pip install pynvim 
 
-# hidden folders are here
-mkdir /home/douglas/.clones
+# creating custom folders here
+mkdir /home/$user/.clones
+mkdir /home/$user/git
 
-cd /home/douglas/.clones
-repos=("Prayag2/kde_onedark"
-   "junegunn/fzf"
+cd /home/$user/.clones
+repos=("junegunn/fzf"
    "tmux-plugins/tpm"
    "tmux-plugins/tmux-sensible"
    "egel/tmux-gruvbox"
@@ -33,38 +37,40 @@ for str in ${repos[@]}; do
 done
 cd /home/toolazy/got
 
-# TERMINAL
-mkdir /home/douglas/git
-
 # fzf
-bash /home/douglas/.clones/fzf/install
+if [-f "/usr/bin/fish"]; then
+   bash /home/$user/.clones/fzf/install
+else
+   yes | sudo pacman -S fish
+   bash /home/$user/.clones/fzf/install
+fi
 
 # TMUX
-mkdir /home/douglas/.config/tmux
-mkdir /home/douglas/.config/tmux/plug
-mkdir /home/douglas/.config/fish/conf.d
+mkdir /home/$user/.config/tmux
+mkdir /home/$user/.config/tmux/plug
+mkdir /home/$user/.config/fish/conf.d
 
-cp tmux.conf /home/douglas/.tmux.conf
-touch /home/douglas/.config/fish/conf.d/tmux.fish
+cp tmux.conf /home/$user/.tmux.conf
+touch /home/$user/.config/fish/conf.d/tmux.fish
 
 echo "
 if not set -q TMUX
     set -g TMUX tmux new-session -d -s develop
     eval $TMUX
     tmux attach-session -d -t develop
-end" >> /home/douglas/.config/fish/conf.d/tmux.fish
+end" >> /home/$user/.config/fish/conf.d/tmux.fish
 
 # ALACRITTY
-cp alacritty-conf.yml /home/douglas/.alacritty.yml
+cp alacritty-conf.yml /home/$user/.alacritty.yml
 
 echo "++++ STARTING NVIM CONFIG ++++"
 
-mkdir /home/douglas/.config/nvim
-mkdir /home/douglas/.config/nvim/settings
-mkdir /home/douglas/.config/nvim/plugs
-mkdir /home/douglas/.config/nvim/keys
+mkdir /home/$user/.config/nvim
+mkdir /home/$user/.config/nvim/settings
+mkdir /home/$user/.config/nvim/plugs
+mkdir /home/$user/.config/nvim/keys
 
-cd /home/douglas/.config/nvim/plugs
+cd /home/$user/.config/nvim/plugs
 
 # nvim-cmp plugins
 repos=("junegunn/vim-plug"
@@ -85,20 +91,22 @@ cd /home/toolazy/got
 sudo mkdir /usr/local/share/lombok
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
 
-cp kglobalshortcutsrc /home/douglas/.config/kglobalshortcutsrc
-cp plugin.vim /home/douglas/.config/nvim/plugs/plugin-config.vim
-cp settings.vim /home/douglas/.config/nvim/settings/settings.vim
-cp mappings.vim /home/douglas/.config/nvim/keys/mappings.vim
-cp coc.vim /home/douglas/.config/nvim/plugs/coc.vim
-cp init.vim /home/douglas/.config/nvim/init.vim
-cp sd.fish /home/douglas/.config/fish/functions/sd.fish
+cp kglobalshortcutsrc /home/$user/.config/kglobalshortcutsrc
+cp plugin.vim /home/$user/.config/nvim/plugs/plugin-config.vim
+cp settings.vim /home/$user/.config/nvim/settings/settings.vim
+cp mappings.vim /home/$user/.config/nvim/keys/mappings.vim
+cp coc.vim /home/$user/.config/nvim/plugs/coc.vim
+cp init.vim /home/$user/.config/nvim/init.vim
+cp sd.fish /home/$user/.config/fish/functions/sd.fish
 
-cd /home/douglas/.clones
+cd /home/$user/.clones
 git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome/
 makepkg -s
-cd /home/toolazy/got
+gg=$(find -name "*.zst")
+sudo pacman -U $gg
 
+cd /home/toolazy/got
 echo ""
 echo ""
 echo "===>DONE"
