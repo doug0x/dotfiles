@@ -15,7 +15,7 @@ set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
 set laststatus=0                        " Always display the status line
 set number                              " Line numbers
-set cursorline                          " Line highlight"
+set cursorline                          " Line highlight
 set background=dark                     " tell vim what the background color looks like
 set showtabline=2                       " Always show tabs
 set noshowmode                          " We don't need to see things like -- INSERT -- anymore
