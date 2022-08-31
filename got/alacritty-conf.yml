@@ -1,6 +1,6 @@
 # ~/.alacritty.yml
 shell:
-  program: /usr/bin/fish
+  program: tmux
 
 window:
   opacity: 0.95
