@@ -19,10 +19,18 @@ set cursorline
 
 """ Color corrections
 hi Pmenu ctermfg=0 ctermbg=179 guifg=Black guibg=#fca103
-hi SpellBad term=reverse ctermbg=12 gui=undercurl guisp=Red
-hi DiagnosticError ctermfg=124 guifg=Black
+hi DiagnosticError ctermfg=209 ctermbg=NONE guifg=NONE
+hi FgCocWarningFloatBgCocFloating ctermfg=214 ctermbg=238 guifg=#ffaf00
+hi FgCocErrorFloatBgCocFloating ctermfg=209 ctermbg=NONE guifg=#ff875f
+hi CocMenuSel ctermbg=237 guibg=NONE
+hi PmenuSbar ctermbg=240 guibg=#444444
+hi PmenuThumb ctermbg=15 guibg=#444444
+hi FoldColumn ctermfg=209 ctermbg=0 guifg=#ffaf00 guibg=#000000
+hi Folded ctermfg=209 ctermbg=NONE guifg=#ffaf00 guibg=NONE
+hi SignColumn ctermfg=209 ctermbg=NONE guifg=#ffaf00 guibg=NONE
+hi Ignore ctermfg=15
 hi CocListFgBlack ctermfg=7 guifg=#c0c0c0
-hi CocFloating ctermbg=238
+hi CocFloating ctermbg=235
 
 set background=dark                      " tell vim what the background color looks like
 set showtabline=2                       " Always show tabs
