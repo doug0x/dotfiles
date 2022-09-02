@@ -10,7 +10,12 @@ echo -e "\n" | sudo pacman -S plasma
 
 sudo systemctl enable sddm
 
-yes | sudo pacman -S mpv atril neovim jdk-openjdk	java-openjfx jre-openjdk gedit deepin-screenshot deepin-image-viewer python-pip xsel alacritty tmux npm fish wget obs-studio
+# normal use apps
+yes | sudo pacman -S mpv atril gedit deepin-screenshot deepin-image-viewer wget obs-studio
+
+# serious business apps
+
+yes | sudo pacman -S neovim jdk-openjdk java-openjfx jre-openjdk python-pip xsel alacritty tmux npm fish
 # swi-prolog unixodbc texstudio texlive-most code
 
 # node support
