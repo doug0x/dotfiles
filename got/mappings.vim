@@ -43,5 +43,5 @@ nnoremap <C-l> <C-w>l
 
 " :: Need this for java ::
 nnoremap <C-x> :Vexplore<CR>
-nnoremap <C-a> :Texplorer<CR>
-nnoremap <C-1> :tabNext<CR>
+nnoremap <C-a> :Texplore<CR>
+nnoremap <C-q> :tabNext<CR>
