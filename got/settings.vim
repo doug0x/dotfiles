@@ -25,6 +25,7 @@ hi FgCocErrorFloatBgCocFloating ctermfg=209 ctermbg=NONE guifg=#ff875f
 hi CocMenuSel ctermbg=237 guibg=NONE
 hi PmenuSbar ctermbg=240 guibg=#444444
 hi PmenuThumb ctermbg=15 guibg=#444444
+hi MatchParen ctermbg=136 
 hi FoldColumn ctermfg=209 ctermbg=0 guifg=#ffaf00 guibg=#000000
 hi Folded ctermfg=209 ctermbg=NONE guifg=#ffaf00 guibg=NONE
 hi SignColumn ctermfg=209 ctermbg=NONE guifg=#ffaf00 guibg=NONE
@@ -47,3 +48,13 @@ au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vim a
  
 " You can't stop me
 cmap w!! w !sudo tee %
+
+filetype plugin indent on
+syntax enable
+let g:vimtex_view_method = 'zathura'
+
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_compiler_method = 'latexrun'
+
+let maplocalleader = ","
