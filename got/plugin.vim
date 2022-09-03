@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/plugs')
+call plug#begin('~/.config/nvim/general/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -7,6 +7,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lervag/vimtex'
 
 " For vsnip users."
 Plug 'hrsh7th/cmp-vsnip'
