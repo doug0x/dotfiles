@@ -88,7 +88,8 @@ repos=("junegunn/vim-plug"
       "hrsh7th/nvim-cmp"
       "hrsh7th/cmp-vsnip"
       "hrsh7th/vim-vsnip"
-      "nvim-treesitter/nvim-treesitter")
+      "nvim-treesitter/nvim-treesitter"
+      "lervag/vimtex")
 for str in ${repos[@]}; do
    git clone https://github.com/$str
 done
