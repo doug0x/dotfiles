@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/plugs/plugins.vim')
+call plug#begin('~/.config/nvim/plugs')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -8,13 +8,14 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-
 call plug#end()
  
 set completeopt=menu,menuone,noselect
- 
+
 lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -83,3 +84,26 @@ lua <<EOF
   require('lspconfig').pyright.setup {
     capabilities = capabilities}
 EOF
+
+lua<<EOF
+   -- Setup nvim-tree.
+require("nvim-tree").setup()
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+EOF
+
