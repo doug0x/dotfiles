@@ -15,8 +15,7 @@ sudo systemctl enable sddm
 yes | sudo pacman -S mpv atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio
 
 # serious business apps
-
-yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish
+yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish 
 # swi-prolog unixodbc texstudio texlive-most code
 
 # node support
@@ -26,8 +25,8 @@ sudo npm i -g neovim
 sudo npm i -g yarn
 sudo npm i -g pyright
 
-# python support
-sudo pip install pynvim 
+# nvim python support
+sudo pip i pynvim 
 
 # creating custom folders here
 mkdir /home/$user/.clones
@@ -80,7 +79,6 @@ mkdir /home/$user/.config/nvim/plugs
 mkdir /home/$user/.config/nvim/keys
 
 cd /home/$user/.config/nvim/plugs
-
 # nvim-cmp plugins
 repos=("junegunn/vim-plug"
       "hrsh7th/cmp-buffer"
@@ -107,7 +105,10 @@ cp settings.vim /home/$user/.config/nvim/settings/settings.vim
 cp mappings.vim /home/$user/.config/nvim/keys/mappings.vim
 cp coc.vim /home/$user/.config/nvim/plugs/coc.vim
 cp init.vim /home/$user/.config/nvim/init.vim
+cp coc-settings.json /home/$user/.config/nvim/coc-settings.json
 cp sd.fish /home/$user/.config/fish/functions/sd.fish
+cp config.fish /home/$user/.config/fish/config.fish
+cp fish_prompt.fish /home/$user/.config/fish/functions/
 
 cd /home/$user/.clones
 git clone https://aur.archlinux.org/google-chrome.git
