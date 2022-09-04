@@ -78,6 +78,24 @@ mkdir /home/$user/.config/nvim/settings
 mkdir /home/$user/.config/nvim/plugs
 mkdir /home/$user/.config/nvim/keys
 
+cd /home/$user/.config/nvim/plugs
+# nvim-cmp plugins
+repos=("junegunn/vim-plug"
+      "hrsh7th/cmp-buffer"
+      "neovim/nvim-lspconfig"
+      "hrsh7th/cmp-nvim-lsp"
+      "hrsh7th/cmp-path"
+      "hrsh7th/cmp-cmdline"
+      "hrsh7th/nvim-cmp"
+      "hrsh7th/cmp-vsnip"
+      "hrsh7th/vim-vsnip"
+      "nvim-treesitter/nvim-treesitter"
+      "lervag/vimtex")
+for str in ${repos[@]}; do
+   git clone https://github.com/$str
+done
+cd /home/toolazy/got
+
 sudo mkdir /usr/local/share/lombok
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
 
