@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "++++ STARTING ++++"
 echo ""
+echo ""
 echo -n "Enter your user: "
 read user
 
@@ -11,11 +12,11 @@ echo -e "\n" | sudo pacman -S plasma
 sudo systemctl enable sddm
 
 # normal use apps
-yes | sudo pacman -S mpv atril gedit deepin-screenshot deepin-image-viewer wget obs-studio
+yes | sudo pacman -S mpv atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio
 
 # serious business apps
 
-yes | sudo pacman -S neovim jdk-openjdk java-openjfx jre-openjdk python-pip xsel alacritty tmux npm fish
+yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish
 # swi-prolog unixodbc texstudio texlive-most code
 
 # node support
@@ -68,9 +69,11 @@ end" >> /home/$user/.config/fish/conf.d/tmux.fish
 
 # ALACRITTY
 cp alacritty-conf.yml /home/$user/.alacritty.yml
-
+echo ""
+echo ""
 echo "++++ STARTING NVIM CONFIG ++++"
-
+echo ""
+echo ""
 mkdir /home/$user/.config/nvim
 mkdir /home/$user/.config/nvim/settings
 mkdir /home/$user/.config/nvim/plugs
@@ -112,7 +115,6 @@ cd google-chrome/
 makepkg -s
 gg=$(find -name "*.zst")
 yes | sudo pacman -U $gg
-
 cd /home/toolazy/got
 echo ""
 echo ""
