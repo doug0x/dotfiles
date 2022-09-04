@@ -26,7 +26,7 @@ sudo npm i -g yarn
 sudo npm i -g pyright
 
 # nvim python support
-sudo pip i pynvim 
+sudo pip install pynvim 
 
 # creating custom folders here
 mkdir /home/$user/.clones
