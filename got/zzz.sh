@@ -93,6 +93,9 @@ cp init.vim /home/$user/.config/nvim/init.vim
 cp coc-settings.json /home/$user/.config/nvim/coc-settings.json
 cp config.fish /home/$user/.config/fish/
 cp fish_prompt.fish /home/$user/.config/fish/functions/
+cd fish
+cp * /home/$user/.config/fish/functions/
+cd ..
 
 cd /home/$user/.clones
 git clone https://aur.archlinux.org/google-chrome.git
