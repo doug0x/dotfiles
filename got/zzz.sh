@@ -7,12 +7,11 @@ read user
 
 sudo pacman -Sy
 yes | sudo pacman -S xorg-server nvidia xf86-video-amdgpu sddm
-echo -e "\n" | sudo pacman -S plasma
-
 sudo systemctl enable sddm
+sudo pacman -S plasma
 
 # normal use apps
-yes | sudo pacman -S mpv atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio
+yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio
 
 # serious business apps
 yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish 
