@@ -13,6 +13,7 @@ do not run pacstrap or pacman before pacman-init.service has finished
 
 ### TMUX
 After all:
+
 ```Alt + b + I```
 
 ### NVIM
@@ -21,5 +22,3 @@ After all:
 ```:PlugInstall```
 
 ```:CocInstall coc-java coc-json coc-python coc-snippets coc-vimlsp```
-
-Run ```:CocConfig```
