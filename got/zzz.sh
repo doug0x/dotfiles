@@ -85,17 +85,14 @@ sudo mkdir /usr/local/share/lombok
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
 
 cp kglobalshortcutsrc /home/$user/.config/kglobalshortcutsrc
-cp plugins.vim /home/$user/.config/nvim/plugs/
-cp settings.vim /home/$user/.config/nvim/settings/settings.vim
-cp mappings.vim /home/$user/.config/nvim/keys/mappings.vim
-cp coc.vim /home/$user/.config/nvim/plugs/coc.vim
-cp init.vim /home/$user/.config/nvim/init.vim
-cp coc-settings.json /home/$user/.config/nvim/coc-settings.json
-cp config.fish /home/$user/.config/fish/
-cp fish_prompt.fish /home/$user/.config/fish/functions/
-cd fish
-cp * /home/$user/.config/fish/functions/
-cd ..
+cp nvim/plugins.vim /home/$user/.config/nvim/plugs/
+cp nvim/settings.vim /home/$user/.config/nvim/settings/
+cp nvim/mappings.vim /home/$user/.config/nvim/keys/
+cp nvim/coc.vim /home/$user/.config/nvim/plugs/
+cp nvim/init.vim /home/$user/.config/nvim/
+cp nvim/coc-settings.json /home/$user/.config/nvim/
+cp fish/config.fish /home/$user/.config/fish/
+cp fish/functions/* /home/$user/.config/fish/functions/
 
 cd /home/$user/.clones
 git clone https://aur.archlinux.org/google-chrome.git
