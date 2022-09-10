@@ -14,8 +14,13 @@ sudo pacman -S plasma
 yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio
 
 # serious business apps
-yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish 
-# swi-prolog unixodbc texstudio texlive-most code
+yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish swi-prolog unixodbc
+
+# more packages
+yes | sudo pacman -S docker docker-compose git-lfs
+
+# texstudio texlive-most code
+
 
 # node support
 sudo npm i -g neovim 
