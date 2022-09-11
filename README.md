@@ -21,4 +21,4 @@ After all:
 
 ```:PlugInstall```
 
-```:CocInstall coc-java coc-json coc-python coc-snippets coc-vimlsp```
+```:CocInstall coc-java coc-json coc-python coc-snippets coc-vimlsp coc-texlab```
