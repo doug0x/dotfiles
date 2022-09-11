@@ -11,16 +11,14 @@ sudo pacman -S sddm plasma
 sudo systemctl enable sddm
 
 # normal use apps
-yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio
+yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio openssh
 
 # serious business apps
 yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish swi-prolog unixodbc
 
 # more packages
 yes | sudo pacman -S docker docker-compose git-lfs
-
 # texstudio texlive-most code
-
 
 # node support
 sudo npm i -g neovim 
@@ -58,17 +56,7 @@ fi
 # TMUX
 mkdir /home/$user/.config/tmux
 mkdir /home/$user/.config/tmux/plug
-mkdir /home/$user/.config/fish/conf.d
-
-cp tmux.conf /home/$user/.tmux.conf
-touch /home/$user/.config/fish/conf.d/tmux.fish
-
-echo "
-if not set -q TMUX
-    set -g TMUX tmux new-session -d -s develop
-    eval $TMUX
-    tmux attach-session -d -t develop
-end" >> /home/$user/.config/fish/conf.d/tmux.fish
+cp tmux/tmux.conf  /home/$user/.tmux.conf
 
 # ALACRITTY
 cp alacritty-conf.yml /home/$user/.alacritty.yml
@@ -98,7 +86,6 @@ cp nvim/init.vim /home/$user/.config/nvim/
 cp nvim/coc-settings.json /home/$user/.config/nvim/
 cp fish/config.fish /home/$user/.config/fish/
 cp fish/functions/* /home/$user/.config/fish/functions/
-cp tmux/tmux.conf /home/$user/.tmux.conf
 
 cd /home/$user/.clones
 git clone https://aur.archlinux.org/google-chrome.git
