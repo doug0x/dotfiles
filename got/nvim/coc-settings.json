@@ -1,0 +1,29 @@
+{
+   "coc.preferences.formatOnSaveFiletypes": [
+      "markdown",
+      "javascript",
+      "yaml",
+      "json",
+      "python",
+      "java"
+   ],
+   "semanticTokens.filetypes": [
+      "python",
+      "java",
+      "javascript"
+   ],
+   "java.configuration.runtimes": [
+      {
+         "name": "JavaSE-17",
+         "path": "/usr/lib/jvm/java-17-openjdk"
+      }
+   ],
+   "java.home": "/usr/lib/jvm/java-17-openjdk",
+   "java.trace.server": "off",
+   "java.enabled": true,
+   "java.codeGeneration.useBlocks": true,
+   "java.import.maven.enabled": true,
+   "java.maven.downloadSources": false,
+   "python.linting.enabled": true,
+   "python.linting.pylintEnabled": true
+}
