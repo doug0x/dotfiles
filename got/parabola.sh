@@ -78,3 +78,4 @@ cp openbox/lxsession/* $HOME/.config/lxsession/LXDE/
 cp openbox/pcmanfm/* $HOME/.config/pcmanfm/LXDE/
 cp openbox/autostart/* $HOME/.config/autostart/
 cp openbox/settings.ini $HOME/.config/gtk-3.0/
+echo "wallpaper=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
