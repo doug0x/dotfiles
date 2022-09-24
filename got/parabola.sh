@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # desk-env
-sudo pacman -S pcmanfm openbox lxtask lxsession lxrandr lxmusic lxlauncher lxinput lxhotkey lxdm lxde-common lxappearance lxappearance-obconf gpicview
+sudo pacman -S pcmanfm openbox lxtask lxsession lxrandr lxmusic lxlauncher lxinput lxhotkey lxdm lxde-common lxappearance lxappearance-obconf gpicview wget
 sudo systemctl enable lxdm
 
 # additional for de
@@ -31,7 +31,7 @@ repos=("junegunn/fzf"
 for str in ${repos[@]}; do
    git clone https://github.com/$str
 done
-cd $HOME/git
+cd $HOME/git/toolazy/got
 
 # fzf
 if [ -f "/usr/bin/fish" ]; then
@@ -42,21 +42,23 @@ else
 fi
 
 # TMUX
-mkdir $HOME/.config/tmux
-mkdir $HOME/.config/tmux/plug
+mkdir -p $HOME/.config/tmux/plug
 cp tmux/tmux.conf  $HOME/.tmux.conf
 
 # ALACRITTY
 cp alacritty-conf.yml $HOME/.alacritty.yml
 
-mkdir $HOME/.config/nvim
-mkdir $HOME/.config/nvim/settings
-mkdir $HOME/.config/nvim/plugs
-mkdir $HOME/.config/nvim/keys
-
+mkdir -p $HOME/.config/nvim/settings
+mkdir -p $HOME/.config/nvim/plugs
+mkdir -p $HOME/.config/nvim/keys
+mkdir -p $HOME/.config/lxsession/LXDE
+mkdir -p $HOME/.config/openbox
+mkdir -p $HOME/.config/pcmanfm/LXDE
+mkdir -p $HOME/.config/autostart
+mkdir -p $HOME/.config/gtk-3.0 
 cd $HOME/.config/nvim/plugs
 git clone https://github.com/junegunn/vim-plug
-cd $HOME/git
+cd $HOME/git/toolazy/got
 
 sudo mkdir /usr/local/share/lombok
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
@@ -70,7 +72,7 @@ cp nvim/coc-settings.json $HOME/.config/nvim/
 cp fish/config.fish $HOME/.config/fish/
 cp fish/functions/* $HOME/.config/fish/functions/
 
-cp openbox/30-touchpad.conf /etc/X11/xorg.conf.d/
+sudo cp 30-touchpad.conf /etc/X11/xorg.conf.d/
 cp openbox/lxde-rc.xml $HOME/.config/openbox/
 cp openbox/lxsession/* $HOME/.config/lxsession/LXDE/
 cp openbox/pcmanfm/* $HOME/.config/pcmanfm/LXDE/
