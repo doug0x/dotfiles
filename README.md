@@ -5,20 +5,19 @@ do not run pacstrap or pacman before pacman-init.service has finished
 
 ```systemctl status -l pacman-init.service```
 
-### WIFI
+## WIFI
+### iwctl 
+```station wlan0 scan```
+```station wlan0 get-networks```
+```station wlan0 connect [SSI]```
 
+### networkmanager
 ```nmcli device wifi list```
-
 ```nmcli device wifi connect [SSID or BSSID] password [password]```
 
 ### TMUX
-After all:
-
 ```Alt + b + I```
 
 ### NVIM
-After all:
-
 ```:PlugInstall```
-
-```:CocInstall coc-tsserver coc-java coc-json coc-pyright coc-sh coc-html coc-css coc-snippets coc-vimlsp coc-texlab```
+```:CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp coc-texlab```

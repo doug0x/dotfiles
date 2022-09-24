@@ -1,22 +1,15 @@
 #!/bin/bash
-echo -e "\n++++ STARTING ++++\n"
 
-sudo pacman -Sy
-yes | sudo pacman -S xorg-server nvidia xf86-video-amdgpu
-sudo pacman -S sddm plasma
-sudo systemctl enable sddm
+# desk-env
+sudo pacman -S pcmanfm openbox lxtask lxsession lxrandr lxmusic lxlauncher lxinput lxhotkey lxdm lxde-common lxappearance lxappearance-obconf gpicview
+sudo systemctl enable lxdm
 
-# normal use apps
-yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio openssh
+# additional for de
+sudo pacman -S gtk-engines iceweasel
 
-# serious business apps
-yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty tmux npm fish swi-prolog unixodbc
+# serious business
+yes | sudo pacman -S npm alacritty tmux neovim fish jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel
 
-# more packages
-yes | sudo pacman -S docker docker-compose git-lfs
-# texstudio texlive-most code
-
-# node support
 sudo npm i -g neovim 
 
 # for coc
@@ -68,7 +61,6 @@ cd $HOME/git
 sudo mkdir /usr/local/share/lombok
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
 
-cp kglobalshortcutsrc $HOME/.config/kglobalshortcutsrc
 cp nvim/plugins.vim $HOME/.config/nvim/plugs/
 cp nvim/settings.vim $HOME/.config/nvim/settings/
 cp nvim/mappings.vim $HOME/.config/nvim/keys/
@@ -77,18 +69,10 @@ cp nvim/init.vim $HOME/.config/nvim/
 cp nvim/coc-settings.json $HOME/.config/nvim/
 cp fish/config.fish $HOME/.config/fish/
 cp fish/functions/* $HOME/.config/fish/functions/
-cp kde/* $HOME/.config/
 
-echo -e "\n[Containments][22][Wallpaper][org.kde.image][General]\n
-Image=file://$HOME/Pictures/comfy1.jpg\n
-SlidePaths=$HOME/.local/share/wallpapers,/usr/share/wallpapers\n" >> $HOME/.config/plasma-org.kde.plasma.desktop-appletsrc
-
-echo -e "\n[Wallpapers]\nusersWallpapers=$HOME/Pictures/comfy1.jpg" >> $HOME/.config/plasmarc
-
-echo -e "\nMenuBar=Disabled\nToolBarsMovable=Disabled" >> $HOME/.config/systemsettingsrc
-
-cd $HOME/.clones
-git clone https://aur.archlinux.org/google-chrome.git
-cd google-chrome/
-makepkg -si
-sudo systemctl reboot
+cp openbox/30-touchpad.conf /etc/X11/xorg.conf.d/
+cp openbox/lxde-rc.xml $HOME/.config/openbox/
+cp openbox/lxsession/* $HOME/.config/lxsession/LXDE/
+cp openbox/pcmanfm/* $HOME/.config/pcmanfm/LXDE/
+cp openbox/autostart/* $HOME/.config/autostart/
+cp openbox/settings.ini $HOME/.config/gtk-3.0/
