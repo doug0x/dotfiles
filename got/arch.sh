@@ -38,7 +38,7 @@ repos=("junegunn/fzf"
 for str in ${repos[@]}; do
    git clone https://github.com/$str
 done
-cd $HOME/git
+cd $HOME/git/toolazy/got
 
 # fzf
 if [ -f "/usr/bin/fish" ]; then
@@ -63,7 +63,7 @@ mkdir $HOME/.config/nvim/keys
 
 cd $HOME/.config/nvim/plugs
 git clone https://github.com/junegunn/vim-plug
-cd $HOME/git
+cd $HOME/git/toolazy/got
 
 sudo mkdir /usr/local/share/lombok
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
