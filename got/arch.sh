@@ -79,10 +79,10 @@ cp fish/functions/* $HOME/.config/fish/functions/
 cp kde/* $HOME/.config/
 
 echo -e "\n[Containments][22][Wallpaper][org.kde.image][General]\n
-Image=file://$HOME/Pictures/comfy1.jpg\n
+Image=file://$HOME/git/toolazy/got/wp.jpg\n
 SlidePaths=$HOME/.local/share/wallpapers,/usr/share/wallpapers\n" >> $HOME/.config/plasma-org.kde.plasma.desktop-appletsrc
 
-echo -e "\n[Wallpapers]\nusersWallpapers=$HOME/Pictures/comfy1.jpg" >> $HOME/.config/plasmarc
+echo -e "\n[Wallpapers]\nusersWallpapers=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/plasmarc
 
 echo -e "\nMenuBar=Disabled\nToolBarsMovable=Disabled" >> $HOME/.config/systemsettingsrc
 
