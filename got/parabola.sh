@@ -4,7 +4,7 @@
 sudo pacman -S pcmanfm openbox lxtask lxsession lxrandr lxmusic lxlauncher lxinput lxhotkey lxdm lxde-common lxappearance lxappearance-obconf gpicview wget
 sudo systemctl enable lxdm
 
-# additional for de
+# additional for [de]
 sudo pacman -S gtk-engines iceweasel
 
 # serious business
@@ -21,6 +21,15 @@ sudo pip install pynvim
 
 # creating custom folders here
 mkdir $HOME/.clones
+mkdir -p $HOME/.config/tmux/plug
+mkdir -p $HOME/.config/nvim/settings
+mkdir -p $HOME/.config/nvim/plugs
+mkdir -p $HOME/.config/nvim/keys
+mkdir -p $HOME/.config/lxsession/LXDE
+mkdir -p $HOME/.config/openbox
+mkdir -p $HOME/.config/pcmanfm/LXDE
+mkdir -p $HOME/.config/autostart
+mkdir -p $HOME/.config/gtk-3.0 
 
 cd $HOME/.clones
 repos=("junegunn/fzf"
@@ -42,20 +51,11 @@ else
 fi
 
 # TMUX
-mkdir -p $HOME/.config/tmux/plug
 cp tmux/tmux.conf  $HOME/.tmux.conf
 
 # ALACRITTY
 cp alacritty-conf.yml $HOME/.alacritty.yml
 
-mkdir -p $HOME/.config/nvim/settings
-mkdir -p $HOME/.config/nvim/plugs
-mkdir -p $HOME/.config/nvim/keys
-mkdir -p $HOME/.config/lxsession/LXDE
-mkdir -p $HOME/.config/openbox
-mkdir -p $HOME/.config/pcmanfm/LXDE
-mkdir -p $HOME/.config/autostart
-mkdir -p $HOME/.config/gtk-3.0 
 cd $HOME/.config/nvim/plugs
 git clone https://github.com/junegunn/vim-plug
 cd $HOME/git/toolazy/got
@@ -78,4 +78,4 @@ cp openbox/lxsession/* $HOME/.config/lxsession/LXDE/
 cp openbox/pcmanfm/* $HOME/.config/pcmanfm/LXDE/
 cp openbox/autostart/* $HOME/.config/autostart/
 cp openbox/settings.ini $HOME/.config/gtk-3.0/
-echo "wallpaper=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
+echo -e "\nwallpaper=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
