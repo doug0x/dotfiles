@@ -9,10 +9,10 @@ _k_friendly_name=Alacritty
 _launch=Ctrl+Alt+T,none,Alacritty
 
 [KDE Keyboard Layout Switcher]
-Switch keyboard layout to English (US)=Meta+8,none,Switch keyboard layout to English (US)
+Switch keyboard layout to English (US)=Meta+7,none,Switch keyboard layout to English (US)
 Switch keyboard layout to German=Meta+0,none,Switch keyboard layout to German
-Switch keyboard layout to Portuguese (Brazil)=Meta+9,none,Switch keyboard layout to Portuguese (Brazil)
-Switch keyboard layout to Russian=none,none,Switch keyboard layout to Russian
+Switch keyboard layout to Portuguese (Brazil)=Meta+8,none,Switch keyboard layout to Portuguese (Brazil)
+Switch keyboard layout to Russian=Meta+9,none,Switch keyboard layout to Russian
 Switch to Next Keyboard Layout=Meta+Alt+K,none,Switch to Next Keyboard Layout
 _k_friendly_name=Keyboard Layout Switcher
 
