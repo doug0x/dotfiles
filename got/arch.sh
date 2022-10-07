@@ -2,9 +2,8 @@
 echo -e "\n++++ STARTING ++++\n"
 
 sudo pacman -Sy
-yes | sudo pacman -S xorg-server nvidia xf86-video-amdgpu
-sudo pacman -S sddm plasma
-sudo systemctl enable sddm
+yes | sudo pacman -S xorg-server xorg-xinit nvidia xf86-video-amdgpu
+echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" >> $HOME/.xinitrc
 
 # normal use apps
 yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio openssh
@@ -16,14 +15,10 @@ yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjd
 yes | sudo pacman -S docker docker-compose git-lfs
 # texstudio texlive-most code
 
-# node support
+# nvim support
 sudo npm i -g neovim 
-
-# for coc
 sudo npm i -g yarn
 sudo npm i -g pyright
-
-# nvim python support
 sudo pip install pynvim 
 
 # creating custom folders here
@@ -49,15 +44,13 @@ else
 fi
 
 # TMUX
-mkdir $HOME/.config/tmux
-mkdir $HOME/.config/tmux/plug
-cp tmux/tmux.conf  $HOME/.tmux.conf
+mkdir -p $HOME/.config/tmux/plug
+cp tmux/tmux.conf $HOME/.tmux.conf
 
 # ALACRITTY
 cp alacritty-conf.yml $HOME/.alacritty.yml
 
-mkdir $HOME/.config/nvim
-mkdir $HOME/.config/nvim/settings
+mkdir -p $HOME/.config/nvim/settings
 mkdir $HOME/.config/nvim/plugs
 mkdir $HOME/.config/nvim/keys
 
