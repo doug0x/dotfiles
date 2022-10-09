@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # desk-env
-sudo pacman -S pcmanfm openbox lxtask lxsession lxrandr lxmusic lxlauncher lxinput lxhotkey lxdm lxde-common lxappearance lxappearance-obconf gpicview wget
-sudo systemctl enable lxdm
+sudo pacman -S pcmanfm openbox lxtask lxsession lxrandr mpv lxlauncher lxinput lxhotkey lxde-common lxappearance lxappearance-obconf gpicview wget xorg-xinit
+echo -e "export DESKTOP_SESSION=lxde\nexec startlxde" >> $HOME/.xinitrc
 
 # additional for [de]
 sudo pacman -S gtk-engines iceweasel
@@ -10,26 +10,23 @@ sudo pacman -S gtk-engines iceweasel
 # serious business
 yes | sudo pacman -S npm alacritty tmux neovim fish jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel
 
+# nvim support
 sudo npm i -g neovim 
-
-# for coc
 sudo npm i -g yarn
 sudo npm i -g pyright
-
-# nvim python support
 sudo pip install pynvim 
 
 # creating custom folders here
 mkdir $HOME/.clones
 mkdir -p $HOME/.config/tmux/plug
 mkdir -p $HOME/.config/nvim/settings
-mkdir -p $HOME/.config/nvim/plugs
-mkdir -p $HOME/.config/nvim/keys
+mkdir $HOME/.config/nvim/plugs
+mkdir $HOME/.config/nvim/keys
 mkdir -p $HOME/.config/lxsession/LXDE
-mkdir -p $HOME/.config/openbox
+mkdir $HOME/.config/openbox
 mkdir -p $HOME/.config/pcmanfm/LXDE
-mkdir -p $HOME/.config/autostart
-mkdir -p $HOME/.config/gtk-3.0 
+mkdir $HOME/.config/autostart
+mkdir $HOME/.config/gtk-3.0 
 
 cd $HOME/.clones
 repos=("junegunn/fzf"
@@ -51,7 +48,7 @@ else
 fi
 
 # TMUX
-cp tmux/tmux.conf  $HOME/.tmux.conf
+cp tmux/tmux.conf $HOME/.tmux.conf
 
 # ALACRITTY
 cp alacritty-conf.yml $HOME/.alacritty.yml
