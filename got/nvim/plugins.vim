@@ -5,6 +5,8 @@ Plug 'lervag/vimtex'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'jamestthompson3/nvim-remote-containers'
+Plug 'shime/vim-livedown'
+Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 
 lua<<EOF
