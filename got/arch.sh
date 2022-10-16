@@ -3,13 +3,14 @@ echo -e "\n++++ STARTING ++++\n"
 
 sudo pacman -Sy
 yes | sudo pacman -S xorg-server xorg-xinit nvidia xf86-video-amdgpu
+sudo pacman -S plasma
 echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" >> $HOME/.xinitrc
 
 # normal use apps
 yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio openssh
 
 # serious business apps
-yes | sudo pacman -S neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk python-pip xsel alacritty kitty tmux npm fish swi-prolog unixodbc
+yes | sudo pacman -S neovim github-cli jre8-openjdk jdk8-openjdk openjdk8-doc jre11-openjdk	jdk11-openjdk	openjdk11-doc	jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc python-pip xsel alacritty tmux npm fish
 
 # more packages
 yes | sudo pacman -S docker docker-compose git-lfs
