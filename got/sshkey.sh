@@ -12,11 +12,12 @@ select key in "rsa" "ed25519"; do
    esac
 done
 if [ -f "$HOME/.ssh/id_$key.pub" ]; then
-   echo $(cat $HOME/.ssh/id_$key.pub)
+   cat $HOME/.ssh/id_$key.pub
    echo -e "\n ====> https://github.com/settings/ssh/new \n"
 else
    ssh-keygen -t $key -b 4096 -C $email
    eval "$(ssh-agent -s)"
    ssh-add $HOME/.ssh/id_$key
+   cat $HOME/.ssh/id_$key.pub
    echo -e "\n ====> https://github.com/settings/ssh/new \n"
 fi
