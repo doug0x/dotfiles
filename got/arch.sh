@@ -1,6 +1,4 @@
 #!/bin/bash
-echo -e "\n++++ STARTING ++++\n"
-
 sudo pacman -Sy
 yes | sudo pacman -S xorg-server xorg-xinit nvidia xf86-video-amdgpu
 sudo pacman -S plasma
@@ -10,7 +8,7 @@ echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" >> $HOME/.xinitrc
 yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio openssh
 
 # serious business apps
-yes | sudo pacman -S neovim github-cli jre8-openjdk jdk8-openjdk openjdk8-doc jre11-openjdk	jdk11-openjdk	openjdk11-doc	jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc python-pip xsel alacritty tmux npm fish
+yes | sudo pacman -S neovim github-cli jre8-openjdk jdk8-openjdk openjdk8-doc jre11-openjdk	jdk11-openjdk openjdk11-doc jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc mariadb dbeaver python-pip xsel alacritty tmux npm fish
 
 # more packages
 yes | sudo pacman -S docker docker-compose git-lfs
@@ -79,6 +77,9 @@ SlidePaths=$HOME/.local/share/wallpapers,/usr/share/wallpapers\n" >> $HOME/.conf
 echo -e "\n[Wallpapers]\nusersWallpapers=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/plasmarc
 
 echo -e "\nMenuBar=Disabled\nToolBarsMovable=Disabled" >> $HOME/.config/systemsettingsrc
+
+sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo systemctl enable mariadb.service
 
 cd $HOME/.clones
 git clone https://aur.archlinux.org/google-chrome.git
