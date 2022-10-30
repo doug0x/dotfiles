@@ -1,3 +1,7 @@
+" :CocInstall coc-tsserver coc-java coc-json 
+" coc-pyright coc-git coc-sh coc-html coc-css 
+" coc-snippets coc-vimlsp coc-texlab
+
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
