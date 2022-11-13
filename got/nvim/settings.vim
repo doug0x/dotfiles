@@ -1,6 +1,6 @@
 " set leader key
 let g:mapleader = "\<Space>"
- 
+
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set encoding=utf-8                      " The encoding displayed
 set pumheight=10                        " Makes popup menu smaller
@@ -23,8 +23,9 @@ set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
 set updatetime=300                      " Faster completion
 set timeoutlen=500                      " By default timeoutlen is 1000 ms
-set formatoptions-=cro                  " Stop newline continution of comments
+set formatoptions-=o                    " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
+set number relativenumber               " Hybrid line number
 
 """ Color corrections
 hi Pmenu ctermfg=0 ctermbg=179 guifg=Black guibg=#d7af5f
@@ -45,6 +46,7 @@ hi DiffAdd ctermbg=65 guibg=#5f875f ctermfg=15
 hi DiffChange ctermbg=94 guibg=#875f00 ctermfg=15
 hi DiffDelete ctermbg=124 guibg=#af0000 ctermfg=15 guifg=#ffffff
 hi Comment ctermfg=67 guifg=#5f87af
+hi CocInlayHint ctermbg=235 ctermfg=107
 
 " You can't stop me
 cmap w!! w !sudo tee % 
