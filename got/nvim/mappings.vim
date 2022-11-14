@@ -23,3 +23,6 @@ nnoremap <C-s> :w<CR>
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
+
+" Save and exec py file in normal mode
+autocmd FileType python map <buffer> <F3> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
