@@ -1,3 +1,3 @@
 function vd
-   nvim ./ $argv
+   mpv --volume=10 $argv
 end
