@@ -20,9 +20,15 @@ nnoremap <S-TAB> :bprevious<CR>
 " Alternate way to save
 nnoremap <C-s> :w<CR>
 
+" Alternate way to quit
+nnoremap <C-q> :Ex<CR>
+
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
 
-" Save and exec py file in normal mode
+" Save and exec file in normal mode
 autocmd FileType python map <buffer> <F3> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType javascript map <buffer> <F4> :w<CR>:exec '!node' shellescape(@%, 1)<CR>
+autocmd FileType sh map <buffer> <F5> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
+autocmd FileType haskell map <buffer> <F6> :w<CR>:exec '!stack runghc --' shellescape(@%, 1)<CR>
