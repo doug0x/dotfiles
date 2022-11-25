@@ -1,27 +1,30 @@
 #!/bin/bash
-sudo pacman -Sy
-yes | sudo pacman -S xorg-server xorg-xinit nvidia xf86-video-amdgpu
-sudo pacman -S plasma
-echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" >> $HOME/.xinitrc
+sudo pacman -S plasma mpv wget xorg-xinit xorg-server nvidia xf86-video-amdgpu
+echo -e "export DESKTOP_SESSION=lxde\nexec startplasma-x11" >> $HOME/.xinitrc
 
-# normal use apps
-yes | sudo pacman -S atril unzip gedit deepin-screenshot deepin-image-viewer wget obs-studio openssh mpv tree
+yes | sudo pacman -S atril unzip deepin-screenshot deepin-image-viewer obs-studio openssh tree neovim github-cli jre8-openjdk jdk8-openjdk openjdk8-doc jre11-openjdk jdk11-openjdk openjdk11-doc jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc mariadb dbeaver python-pip xsel alacritty tmux npm fish lazygit ghc stack haskell-language-server docker docker-compose git-lfs
+sudo archlinux-java set java-11-openjdk
 
-# serious business apps
-yes | sudo pacman -S neovim github-cli jre8-openjdk jdk8-openjdk openjdk8-doc jre11-openjdk jdk11-openjdk openjdk11-doc jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc mariadb dbeaver python-pip xsel alacritty tmux npm fish lazygit
+## npm install
+sudo npm i -g neovim pyright @angular/cli sass vue node-fetch
 
-# more packages
-yes | sudo pacman -S docker docker-compose git-lfs
-# texstudio texlive-most code
-
-# nvim support
-sudo npm i -g neovim 
-sudo npm i -g yarn
-sudo npm i -g pyright
-sudo pip install pynvim 
+# pip install
+sudo pip install pynvim pydantic
 
 # creating custom folders here
 mkdir $HOME/.clones
+mkdir -p $HOME/.config/tmux/plug
+mkdir -p $HOME/.config/nvim/settings
+mkdir $HOME/.config/nvim/plugs
+mkdir $HOME/.config/nvim/keys
+mkdir -p $HOME/.config/lxsession/LXDE
+mkdir $HOME/.config/openbox
+mkdir -p $HOME/.config/pcmanfm/LXDE
+mkdir $HOME/.config/autostart
+mkdir $HOME/.config/gtk-3.0 
+sudo mkdir /usr/local/share/lombok
+
+sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
 
 cd $HOME/.clones
 repos=("junegunn/fzf"
@@ -36,30 +39,18 @@ cd $HOME/git/toolazy/got
 
 # fzf
 if [ -f "/usr/bin/fish" ]; then
-   yes | bash $HOME/.clones/fzf/install
+   yes | sh $HOME/.clones/fzf/install
 else
    yes | sudo pacman -S fish
-   yes | bash $HOME/.clones/fzf/install
+   yes | sh $HOME/.clones/fzf/install
 fi
-
-# TMUX
-mkdir -p $HOME/.config/tmux/plug
-cp tmux/tmux.conf $HOME/.tmux.conf
-
-# ALACRITTY
-cp alacritty-conf.yml $HOME/.alacritty.yml
-
-mkdir -p $HOME/.config/nvim/settings
-mkdir $HOME/.config/nvim/plugs
-mkdir $HOME/.config/nvim/keys
 
 cd $HOME/.config/nvim/plugs
 git clone https://github.com/junegunn/vim-plug
 cd $HOME/git/toolazy/got
 
-sudo mkdir /usr/local/share/lombok
-sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
-
+cp alacritty-conf.yml $HOME/.alacritty.yml
+cp tmux/tmux.conf $HOME/.tmux.conf
 cp nvim/plugins.vim $HOME/.config/nvim/plugs/
 cp nvim/settings.vim $HOME/.config/nvim/settings/
 cp nvim/mappings.vim $HOME/.config/nvim/keys/
@@ -79,7 +70,6 @@ echo -e "\n[Wallpapers]\nusersWallpapers=$HOME/git/toolazy/got/wp.jpg" >> $HOME/
 echo -e "\nMenuBar=Disabled\nToolBarsMovable=Disabled" >> $HOME/.config/systemsettingsrc
 
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-sudo systemctl enable mariadb.service
 
 cd $HOME/.clones
 git clone https://aur.archlinux.org/google-chrome.git
