@@ -9,7 +9,7 @@ sudo archlinux-java set java-11-openjdk
 sudo npm i -g neovim pyright @angular/cli sass vue node-fetch
 
 # pip install
-sudo pip install pynvim pydantic
+sudo pip install pynvim pydantic fastapi
 
 # creating custom folders here
 mkdir $HOME/.clones
@@ -17,11 +17,6 @@ mkdir -p $HOME/.config/tmux/plug
 mkdir -p $HOME/.config/nvim/settings
 mkdir $HOME/.config/nvim/plugs
 mkdir $HOME/.config/nvim/keys
-mkdir -p $HOME/.config/lxsession/LXDE
-mkdir $HOME/.config/openbox
-mkdir -p $HOME/.config/pcmanfm/LXDE
-mkdir $HOME/.config/autostart
-mkdir $HOME/.config/gtk-3.0 
 sudo mkdir /usr/local/share/lombok
 
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar

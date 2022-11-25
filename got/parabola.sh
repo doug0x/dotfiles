@@ -8,10 +8,9 @@ echo -e "export DESKTOP_SESSION=lxde\nexec startlxde" >> $HOME/.xinitrc
 sudo pacman -S gtk-engines iceweasel
 
 # serious business
-yes | sudo pacman -S npm alacritty tmux neovim fish jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc python-pip xsel tree lazygit
-sudo archlinux-java set java-17-openjdk
+yes | sudo pacman -S npm alacritty tmux neovim fish jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc python-pip xsel tree lazygit ghc stack haskell-language-server
 
-# nvim support
+# npm
 sudo npm i -g neovim 
 sudo npm i -g yarn
 sudo npm i -g pyright
