@@ -1,5 +1,4 @@
 call plug#begin('~/.config/nvim/plugs')
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'nvim-tree/nvim-web-devicons'
