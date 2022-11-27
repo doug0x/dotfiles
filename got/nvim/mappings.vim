@@ -17,10 +17,13 @@ nnoremap <TAB> :bnext<CR>
 " SHIFT-TAB will go back
 nnoremap <S-TAB> :bprevious<CR>
 
+" Deletes the current buffer, error if there are unwritten changes
+nnoremap <C-a> :bw<CR>
+
 " Alternate way to save
 nnoremap <C-s> :w<CR>
 
-" Alternate way to quit
+" Open Explore
 nnoremap <C-q> :Ex<CR>
 
 " Better tabbing
