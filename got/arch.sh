@@ -9,7 +9,7 @@ sudo archlinux-java set java-11-openjdk
 sudo npm i -g neovim pyright @angular/cli sass vue node-fetch
 
 # pip install
-sudo pip install pynvim pydantic fastapi
+pip install pynvim pandas scikit-learn pydantic fastapi
 
 # creating custom folders here
 mkdir $HOME/.clones
@@ -20,6 +20,7 @@ mkdir $HOME/.config/nvim/keys
 sudo mkdir /usr/local/share/lombok
 
 sudo wget https://projectlombok.org/downloads/lombok.jar -O /usr/local/share/lombok/lombok.jar
+sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
 cd $HOME/.clones
 repos=("junegunn/fzf"
@@ -56,15 +57,15 @@ cp fish/config.fish $HOME/.config/fish/
 cp fish/functions/* $HOME/.config/fish/functions/
 cp kde/* $HOME/.config/
 
-echo -e "\n[Containments][22][Wallpaper][org.kde.image][General]\n
-Image=file://$HOME/git/toolazy/got/wp.jpg\n
-SlidePaths=$HOME/.local/share/wallpapers,/usr/share/wallpapers\n" >> $HOME/.config/plasma-org.kde.plasma.desktop-appletsrc
+echo -e "\n[Containments][22][Wallpaper][org.kde.image][General]
+Image=$HOME/git/toolazy/got/wp.jpg
+SlidePaths=$HOME/.local/share/wallpapers,/usr/share/wallpapers\n
+[ScreenMapping]
+itemsOnDisabledScreens=
+screenMapping=" >> $HOME/.config/plasma-org.kde.plasma.desktop-appletsrc
 
-echo -e "\n[Wallpapers]\nusersWallpapers=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/plasmarc
-
-echo -e "\nMenuBar=Disabled\nToolBarsMovable=Disabled" >> $HOME/.config/systemsettingsrc
-
-sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+echo -e "\n[Wallpapers]
+usersWallpapers=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/plasmarc
 
 cd $HOME/.clones
 git clone https://aur.archlinux.org/google-chrome.git
