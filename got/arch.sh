@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo pacman -S plasma mpv wget xorg-xinit xorg-server nvidia xf86-video-amdgpu
-echo -e "export DESKTOP_SESSION=lxde\nexec startplasma-x11" >> $HOME/.xinitrc
+echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" >> $HOME/.xinitrc
 
 yes | sudo pacman -S atril unzip deepin-screenshot deepin-image-viewer obs-studio openssh tree neovim github-cli jre8-openjdk jdk8-openjdk openjdk8-doc jre11-openjdk jdk11-openjdk openjdk11-doc jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc mariadb dbeaver python-pip xsel alacritty tmux npm fish lazygit ghc stack haskell-language-server docker docker-compose git-lfs
 sudo archlinux-java set java-11-openjdk
@@ -9,7 +9,7 @@ sudo archlinux-java set java-11-openjdk
 sudo npm i -g neovim pyright @angular/cli sass vue node-fetch
 
 # pip install
-pip install pynvim pandas scikit-learn pydantic fastapi
+pip install pynvim pandas scikit-learn pydantic fastapi seaborn
 
 # creating custom folders here
 mkdir $HOME/.clones
