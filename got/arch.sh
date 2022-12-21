@@ -2,14 +2,14 @@
 sudo pacman -S plasma mpv wget xorg-xinit xorg-server nvidia xf86-video-amdgpu
 echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" >> $HOME/.xinitrc
 
-yes | sudo pacman -S atril unzip deepin-screenshot deepin-image-viewer obs-studio openssh tree neovim github-cli jre8-openjdk jdk8-openjdk openjdk8-doc jre11-openjdk jdk11-openjdk openjdk11-doc jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc mariadb dbeaver python-pip xsel alacritty tmux npm fish lazygit ghc stack haskell-language-server docker docker-compose git-lfs
-sudo archlinux-java set java-11-openjdk
+yes | sudo pacman -S atril unzip deepin-screenshot deepin-image-viewer obs-studio openssh tree neovim github-cli jdk17-openjdk java17-openjfx jre17-openjdk openjdk17-doc mariadb dbeaver python-pip xsel alacritty tmux npm fish lazygit ghc stack haskell-language-server docker docker-compose git-lfs
+sudo archlinux-java set java-17-openjdk
 
 ## npm install
 sudo npm i -g neovim pyright @angular/cli sass vue node-fetch
 
 # pip install
-pip install pynvim pandas scikit-learn pydantic fastapi seaborn
+pip install pynvim pandas scikit-learn pydantic fastapi seaborn mariadb vectorbt pyinstaller
 
 # creating custom folders here
 mkdir $HOME/.clones
@@ -56,13 +56,6 @@ cp nvim/coc-settings.json $HOME/.config/nvim/
 cp fish/config.fish $HOME/.config/fish/
 cp fish/functions/* $HOME/.config/fish/functions/
 cp kde/* $HOME/.config/
-
-echo -e "\n[Containments][22][Wallpaper][org.kde.image][General]
-Image=$HOME/git/toolazy/got/wp.jpg
-SlidePaths=$HOME/.local/share/wallpapers,/usr/share/wallpapers\n
-[ScreenMapping]
-itemsOnDisabledScreens=
-screenMapping=" >> $HOME/.config/plasma-org.kde.plasma.desktop-appletsrc
 
 echo -e "\n[Wallpapers]
 usersWallpapers=$HOME/git/toolazy/got/wp.jpg" >> $HOME/.config/plasmarc
