@@ -1,4 +1,7 @@
 # ~/.alacritty.yml
+env:
+  TERM: tmux-256color
+
 shell:
   program: tmux
 
