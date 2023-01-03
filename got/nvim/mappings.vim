@@ -2,6 +2,17 @@
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
+" Yep, im done with >no pairs<... (going as faster as i can)
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {- {--}<left><left>
+inoremap {# {-# -}<left><left>
+inoremap {\| {-\|-}<left><left>
+inoremap {; {};<left><left>
+
 " Use alt + hjkl to resize windows
 nnoremap <M-j>:resize -2<CR>
 nnoremap <M-k>:resize +2<CR>
