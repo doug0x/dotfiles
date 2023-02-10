@@ -58,10 +58,10 @@ for fun in $(findDir "functions")/*; do
    ln -s $fun $HOME/.config/fish/functions
 done
 
-nvim -c "source ~/.vimrc" -c "PlugInstall" -c "sleep 15" \
+nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 15" \
    -c "q!" -c "q!"
 
-nvim -c "source ~/.vimrc" \ 
+nvim -u ~/.vimrc \ 
    -c "CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp coc-texlab" \
    -c "sleep 35" -c "q!" -c "q!"
 

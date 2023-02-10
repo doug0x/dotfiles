@@ -98,6 +98,7 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set signcolumn=yes
+let g:coc_global_extensions_dir="~/.vim/coc-settings.json"
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
