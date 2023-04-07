@@ -29,5 +29,7 @@
             "lhaskell"
          ]
       }
-   }
+   },
+   "python.linting.enabled": true,
+   "python.linting.mypyEnabled": true
 }
