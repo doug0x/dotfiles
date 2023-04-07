@@ -1,0 +1,50 @@
+font DejaVu Sans Mono 8
+
+set $mod1 Mod4
+set $mod2 Mod1
+set $ws1 1
+set $ws2 2
+set $ws3 3
+
+bar {
+      status_command i3status
+      position top
+      workspace_buttons yes
+      colors {
+            background #BDB36F
+            statusline #000000
+            separator #000000
+
+            focused_workspace #000000 #ffbf00 #000000
+            active_workspace #000000 #ffbf00 #ffbf00
+            inactive_workspace #000000 #666666 #ffffff
+            urgent_workspace #d33682 #d33682 #fdf6e3
+         }
+   }
+
+# Caps to Super key
+exec --no-statup-id setxkbmap -option caps:super
+
+# tiny border
+for_window [class=".*"] border pixel 2
+
+# always exec alacritty on start
+exec alacritty
+
+# bindings
+bindsym Ctrl+$mod2+t exec alacritty
+
+# look at the moves!
+bindsym $mod1+Tab focus right
+bindsym $mod1+c move right
+bindsym $mod1+x move down
+bindsym $mod1+z move left
+bindsym $mod1+s move up
+
+# toggles
+bindsym $mod1+e fullscreen toggle
+
+# workspaces alt
+bindsym $mod2+1 workspace $ws1
+bindsym $mod2+2 workspace $ws2
+bindsym $mod2+3 workspace $ws3
