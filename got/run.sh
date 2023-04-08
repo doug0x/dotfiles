@@ -28,12 +28,12 @@ sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code
 
 if [[ $distro == *'Parabola'* ]]; then
    sudo pacman -S --noconfirm icecat
-   echo -e "\nbindsym $mod1+g icecat"./.i3/config
+   echo "bindsym \$mod1+g exec icecat" >> ./.i3/config
 
 elif [[ $distro == *'Arch'* ]]; then
    git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
    (cd $HOME/.clones/google-chrome && yes | makepkg -si)
-   echo -e "\nbindsym $mod1+g google-chrome-stable"./.i3/config
+   echo "bindsym \$mod1+g exec google-chrome-stable" >> ./.i3/config
 fi
 echo "exec i3" > $HOME/.xinitrc
 
