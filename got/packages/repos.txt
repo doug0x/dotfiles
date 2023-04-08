@@ -2,4 +2,3 @@ junegunn/fzf
 tmux-plugins/tpm
 tmux-plugins/tmux-sensible
 egel/tmux-gruvbox
-Prayag2/kde_onedark
