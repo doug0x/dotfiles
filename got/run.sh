@@ -20,15 +20,21 @@ sudo mkdir -p /usr/local/share/lombok
 distro=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
 
 sudo pacman -S --noconfirm i3 xorg xorg-xinit neovim tmux alacritty ttf-dejavu mpv
-if [[ $distro == *'Arch'* ]]; then
-   sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code
-   git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
-   (cd $HOME/.clones/google-chrome && yes | makepkg -si)   
-fi
-sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server stack maven 
+sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server 
 sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip
-sudo pacman -S --noconfirm github-cli docker docker-compose
+sudo pacman -S --noconfirm github-cli docker docker-compose cabal-install
 sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
+sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code
+
+if [[ $distro == *'Parabola'* ]]; then
+   sudo pacman -S --noconfirm icecat
+   echo -e "\nbindsym $mod1+g icecat"./.i3/config
+
+elif [[ $distro == *'Arch'* ]]; then
+   git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
+   (cd $HOME/.clones/google-chrome && yes | makepkg -si)
+   echo -e "\nbindsym $mod1+g google-chrome-stable"./.i3/config
+fi
 echo "exec i3" > $HOME/.xinitrc
 
 pip install mariadb mypy telebot yfinance python-binance 
@@ -61,7 +67,7 @@ for fun in $(findDir "functions")/*; do
    ln -s $fun $HOME/.config/fish/functions
 done
 
-nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 15" \
+nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 30" \
    -c "q!" -c "q!"
 
 nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"
