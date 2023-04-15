@@ -234,8 +234,8 @@ nnoremap <M-k>:resize +2<CR>
 nnoremap <M-h>:vertical resize -2<CR>
 nnoremap <M-l>:vertical resize +2<CR>
 
-" I hate escape more than anything else
-inoremap qq <Esc>
+" Jump between pairs
+nnoremap <S-q> %
 
 " TAB in general mode will move to text buffer
 nnoremap <TAB> :bnext<CR>
