@@ -37,7 +37,7 @@ sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screens
 sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip
 
 if [[ $distro == *'Parabola'* ]]; then
-   sudo pacman -S --noconfirm icecat
+   sudo pacman -S --noconfirm icecat pulseaudio pavucontrol
    echo "bindsym \$mod1+g exec icecat" >> ./.i3/config
 
 elif [[ $distro == *'Arch'* ]]; then
@@ -57,6 +57,9 @@ elif [[ $os == 'plasma' ]]; then
    echo "export DESKTOP_SESSION=plasma\nexec startplasma-x11" > $HOME/.xinitrc
    git clone https://github.com/Prayag2/kde_onedark "$HOME/.clones/kde_onedark"
    sh $HOME/.clones/kde_onedark/install --noconfirm
+   for config in $(findDir "kde")/*; do
+      ln -s $config $HOME/.config
+   done
 fi
 
 pip install mariadb mypy telebot yfinance python-binance 
