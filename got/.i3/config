@@ -22,9 +22,6 @@ bar {
          }
    }
 
-# Caps to Super key
-exec --no-statup-id setxkbmap -option caps:super
-
 # tiny border
 for_window [class=".*"] border pixel 2
 
@@ -35,7 +32,7 @@ exec alacritty
 bindsym Ctrl+$mod2+t exec alacritty
 
 # look at the moves!
-bindsym $mod1+Tab focus right
+bindsym $mod2+Tab focus right
 bindsym $mod1+c move right
 bindsym $mod1+x move down
 bindsym $mod1+z move left
@@ -43,8 +40,13 @@ bindsym $mod1+s move up
 
 # toggles
 bindsym $mod1+e fullscreen toggle
+bindsym $mod1+g exec google-chrome-stable
 
 # workspaces alt
 bindsym $mod2+1 workspace $ws1
 bindsym $mod2+2 workspace $ws2
 bindsym $mod2+3 workspace $ws3
+bindsym $mod1+f kill
+
+# Caps to Super key
+exec --no-startup-id xmodmap ~/.i3/capsmap
