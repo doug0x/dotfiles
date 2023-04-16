@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo "i3 or plasma?"
-select os in "i3" "plasma"; do
-   case $os in
+select de in "i3" "plasma"; do
+   case $de in
       i3 )
          de=i3; break;;
       plasma )
