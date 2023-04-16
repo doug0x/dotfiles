@@ -4,9 +4,9 @@ echo "i3 or plasma?"
 select os in "i3" "plasma"; do
    case $os in
       i3 )
-         os=i3; break;;
+         de=i3; break;;
       plasma )
-         os=plasma; break;;
+         de=plasma; break;;
    esac
 done
 
@@ -34,27 +34,27 @@ sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-s
 sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip
 sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install
 sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
-sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip
+sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
 
 if [[ $distro == *'Parabola'* ]]; then
-   sudo pacman -S --noconfirm icecat pulseaudio pavucontrol
-   echo "bindsym \$mod1+g exec icecat" >> ./.i3/config
+   sudo pacman -S --noconfirm icecat
+   echo -e "\nbindsym \$mod1+g exec icecat" >> ./.i3/config
 
 elif [[ $distro == *'Arch'* ]]; then
    git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
    (cd $HOME/.clones/google-chrome && makepkg -si --noconfirm)
-   echo "bindsym \$mod1+g exec google-chrome-stable" >> ./.i3/config
+   echo -e "\nbindsym \$mod1+g exec google-chrome-stable" >> ./.i3/config
 fi
 
-if [[ $os == 'i3' ]]; then
-   sudo pacman -S --noconfirm i3 feh
+if [[ $de == 'i3' ]]; then
+   sudo pacman -S --noconfirm i3 feh pavucontrol
    echo "exec i3" > $HOME/.xinitrc
    createSymlink "config" "$HOME/.i3"
    createSymlink ".i3status.conf" "$HOME"
    echo -e "\nexec --no-startup-id feh --bg-fill $HOME/git/toolazy/got/wallpapers/see.jpg" >> $HOME/.i3/config
-elif [[ $os == 'plasma' ]]; then
+elif [[ $de == 'plasma' ]]; then
    sudo pacman -S --noconfirm plasma
-   echo "export DESKTOP_SESSION=plasma\nexec startplasma-x11" > $HOME/.xinitrc
+   echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" > $HOME/.xinitrc
    git clone https://github.com/Prayag2/kde_onedark "$HOME/.clones/kde_onedark"
    sh $HOME/.clones/kde_onedark/install --noconfirm
    for config in $(findDir "kde")/*; do
