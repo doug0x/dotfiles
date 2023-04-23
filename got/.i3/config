@@ -20,7 +20,7 @@ bar {
             inactive_workspace #000000 #666666 #ffffff
             urgent_workspace #d33682 #d33682 #fdf6e3
          }
-   }
+}
 
 # tiny border
 for_window [class=".*"] border pixel 2
@@ -41,28 +41,19 @@ bindsym $mod1+s move up
 # general
 bindsym $mod1+e fullscreen toggle
 bindsym $mod1+g exec google-chrome-stable
-<<<<<<< HEAD
-=======
 bindsym $mod1+b exec google-chrome-stable -incognito
 bindsym $mod1+8 exec setxkbmap -layout br && xmodmap ~/.i3/capsmap
 bindsym $mod1+7 exec setxkbmap -layout us && xmodmap ~/.i3/capsmap
 bindsym $mod1+n exec redshift -P -O 2100k
 bindsym $mod1+Shift+n exec redshift -P -O 5500k
->>>>>>> goodies
 
 # workspaces alt
 bindsym $mod2+1 workspace $ws1
 bindsym $mod2+2 workspace $ws2
 bindsym $mod2+3 workspace $ws3
 bindsym $mod1+f kill
-<<<<<<< HEAD
-
-# Caps to Super key
-exec --no-startup-id xmodmap ~/.i3/capsmap
-=======
 bindsym $mod1+a exec "i3-msg '[class=.*] focus'"
 
 exec_always --no-startup-id chmod +x ~/.i3/low_battery.sh
 exec_always --no-startup-id chmod +x ~/.i3/script.sh
 exec_always --no-startup-id sh ~/.i3/script.sh
->>>>>>> goodies

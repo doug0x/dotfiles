@@ -31,48 +31,17 @@ createSymlink () {
 
 sudo pacman -S --noconfirm xorg xorg-xinit neovim tmux alacritty ttf-dejavu mpv
 sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server 
-<<<<<<< HEAD
-sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip
-sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install
-=======
 sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip redshift
 sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi
->>>>>>> goodies
 sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
 sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
 
 if [[ $distro == *'Parabola'* ]]; then
    sudo pacman -S --noconfirm icecat
-<<<<<<< HEAD
-   echo -e "\nbindsym \$mod1+g exec icecat" >> ./.i3/config
-=======
->>>>>>> goodies
 
 elif [[ $distro == *'Arch'* ]]; then
    git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
    (cd $HOME/.clones/google-chrome && makepkg -si --noconfirm)
-<<<<<<< HEAD
-   echo -e "\nbindsym \$mod1+g exec google-chrome-stable" >> ./.i3/config
-fi
-
-if [[ $de == 'i3' ]]; then
-   sudo pacman -S --noconfirm i3 feh pavucontrol
-   echo "exec i3" > $HOME/.xinitrc
-   createSymlink "config" "$HOME/.i3"
-   createSymlink ".i3status.conf" "$HOME"
-   echo -e "\nexec --no-startup-id feh --bg-fill $HOME/git/toolazy/got/wallpapers/see.jpg" >> $HOME/.i3/config
-elif [[ $de == 'plasma' ]]; then
-   sudo pacman -S --noconfirm plasma
-   echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" > $HOME/.xinitrc
-   git clone https://github.com/Prayag2/kde_onedark "$HOME/.clones/kde_onedark"
-   sh $HOME/.clones/kde_onedark/install --noconfirm
-   for config in $(findDir "kde")/*; do
-      ln -s $config $HOME/.config
-   done
-fi
-
-pip install mariadb mypy telebot yfinance python-binance 
-=======
 fi
 
 if [[ $de == 'i3' ]]; then
@@ -96,7 +65,6 @@ elif [[ $de == 'plasma' ]]; then
 fi
 
 pip install mariadb mypy telebot yfinance python-binance vectorbt
->>>>>>> goodies
 sudo npm i -g neovim pyright sass node-fetch @angular/cli
 
 while read repo; do
