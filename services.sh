@@ -3,14 +3,15 @@
 # Low battery service
 sudo touch /etc/systemd/system/low_battery.service
 sudo echo "[Unit]
-Description=Low battery service... W-we are sinking?
-After=multi-user.target
+Description=Low battery... W-we are sinking?
 
 [Service]
+Type=simple
+User=$USER
 ExecStart=/bin/bash $HOME/.i3/low_battery.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
 " > /etc/systemd/system/low_battery.service
 
 

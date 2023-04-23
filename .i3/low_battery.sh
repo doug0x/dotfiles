@@ -3,14 +3,13 @@
 while true; do
    battery=$(cat /sys/class/power_supply/BAT0/capacity)
 
-   if [ "$battery" -le "5" ]; then
+   if [ "$battery" -le "7" ]; then
       mpv ~/.i3/sinking.mp3
-      sleep 180
       battery_update=$(cat /sys/class/power_supply/BAT0/capacity)
-      if [ "$battery_update" -ge "5" ]; then
+      if [ "$battery_update" -ge "7" ]; then
          continue
       else
-         systemctl poweroff
+        sudo systemctl poweroff
       fi
    fi
    sleep 30
