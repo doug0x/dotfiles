@@ -1,4 +1,3 @@
-junegunn/fzf
 tmux-plugins/tpm
 tmux-plugins/tmux-sensible
 egel/tmux-gruvbox
