@@ -13,6 +13,9 @@ scrolling:
 
 font:
   size: 9
+  normal:
+    family: Fira Code
+    style: Regular
 
 colors:
   primary:

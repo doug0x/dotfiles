@@ -29,7 +29,7 @@ createSymlink () {
    ln -s $(findGitFile $1) $2
 }
 
-sudo pacman -S --noconfirm xorg xorg-xinit neovim tmux alacritty ttf-dejavu mpv
+sudo pacman -S --noconfirm xorg xorg-xinit neovim tmux alacritty ttf-fira-code mpv
 sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server 
 sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip redshift
 sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi

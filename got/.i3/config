@@ -1,4 +1,4 @@
-font DejaVu Sans Mono 8
+font pango:Fira Code 9
 
 set $mod1 Mod4
 set $mod2 Mod1
