@@ -44,6 +44,8 @@ bindsym $mod1+g exec google-chrome-stable
 bindsym $mod1+b exec google-chrome-stable -incognito
 bindsym $mod1+8 exec setxkbmap -layout br && xmodmap ~/.i3/capsmap
 bindsym $mod1+7 exec setxkbmap -layout us && xmodmap ~/.i3/capsmap
+bindsym $mod1+n exec redshift -P -O 2100k
+bindsym $mod1+Shift+n exec redshift -P -O 5500k
 
 # workspaces alt
 bindsym $mod2+1 workspace $ws1
@@ -52,5 +54,6 @@ bindsym $mod2+3 workspace $ws3
 bindsym $mod1+f kill
 bindsym $mod1+a exec "i3-msg '[class=.*] focus'"
 
+exec_always --no-startup-id chmod +x ~/.i3/low_battery.sh
 exec_always --no-startup-id chmod +x ~/.i3/script.sh
 exec_always --no-startup-id sh ~/.i3/script.sh
