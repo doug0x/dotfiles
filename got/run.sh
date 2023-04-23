@@ -31,18 +31,27 @@ createSymlink () {
 
 sudo pacman -S --noconfirm xorg xorg-xinit neovim tmux alacritty ttf-dejavu mpv
 sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server 
+<<<<<<< HEAD
 sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip
 sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install
+=======
+sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip redshift
+sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi
+>>>>>>> goodies
 sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
 sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
 
 if [[ $distro == *'Parabola'* ]]; then
    sudo pacman -S --noconfirm icecat
+<<<<<<< HEAD
    echo -e "\nbindsym \$mod1+g exec icecat" >> ./.i3/config
+=======
+>>>>>>> goodies
 
 elif [[ $distro == *'Arch'* ]]; then
    git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
    (cd $HOME/.clones/google-chrome && makepkg -si --noconfirm)
+<<<<<<< HEAD
    echo -e "\nbindsym \$mod1+g exec google-chrome-stable" >> ./.i3/config
 fi
 
@@ -63,6 +72,31 @@ elif [[ $de == 'plasma' ]]; then
 fi
 
 pip install mariadb mypy telebot yfinance python-binance 
+=======
+fi
+
+if [[ $de == 'i3' ]]; then
+   sudo pacman -S --noconfirm i3 feh pavucontrol picom
+   echo "exec i3" > $HOME/.xinitrc
+   createSymlink "config" "$HOME/.i3"
+   createSymlink ".i3status.conf" "$HOME"
+   createSymlink "script.sh" "$HOME/.i3"
+   createSymlink "low_battery.sh" "$HOME/.i3"
+   createSymlink "sinking.mp3" "$HOME/.i3"
+   createSymlink "capsmap" "$HOME/.i3"
+   createSymlink ".picom.conf" "$HOME"
+elif [[ $de == 'plasma' ]]; then
+   sudo pacman -S --noconfirm plasma
+   echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" > $HOME/.xinitrc
+   git clone https://github.com/Prayag2/kde_onedark "$HOME/.clones/kde_onedark"
+   sh $HOME/.clones/kde_onedark/install --noconfirm
+   for config in $(findDir "kde")/*; do
+      ln -s $config $HOME/.config
+   done
+fi
+
+pip install mariadb mypy telebot yfinance python-binance vectorbt
+>>>>>>> goodies
 sudo npm i -g neovim pyright sass node-fetch @angular/cli
 
 while read repo; do
@@ -76,12 +110,13 @@ sudo wget https://projectlombok.org/downloads/lombok.jar \
    -O /usr/local/share/lombok/lombok.jar
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
+# My standard links
 createSymlink ".alacritty.yml" "$HOME"
 createSymlink ".gitconfig" "$HOME"
 createSymlink ".tmux.conf" "$HOME"
 createSymlink ".vimrc" "$HOME"
 createSymlink ".gitconfig" "$HOME"
-createSymlink "coc-settings.json" "$HOME/.vim"
+createSymlink "coc-settings.json" "$HOME/.config/nvim"
 createSymlink "config.fish" "$HOME/.config/fish"
 
 # Fish functions link
@@ -92,3 +127,5 @@ done
 nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 30" -c "q!" -c "q!"
 
 nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"
+
+sh ./services.sh
