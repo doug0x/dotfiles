@@ -13,8 +13,7 @@ done
 distro=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
 GIT_DIR=$(find $HOME -name "git" -type d)
 
-mkdir $HOME/.clones
-mkdir $HOME/.i3
+mkdir $HOME/.clones && mkdir $HOME/.i3 
 sudo mkdir -p /usr/local/share/lombok
 
 findGitFile() {
@@ -78,7 +77,7 @@ sudo wget https://projectlombok.org/downloads/lombok.jar \
    -O /usr/local/share/lombok/lombok.jar
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
-# My standard links
+# standard links
 createSymlink ".alacritty.yml" "$HOME"
 createSymlink ".gitconfig" "$HOME"
 createSymlink ".tmux.conf" "$HOME"
@@ -93,5 +92,4 @@ for fun in $(findDir "functions")/*; do
 done
 
 nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 30" -c "q!" -c "q!"
-
 nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"

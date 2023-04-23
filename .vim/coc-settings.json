@@ -1,0 +1,35 @@
+{
+   "java.configuration.runtimes": [
+      {
+         "name": "JavaSE-17",
+         "path": "/usr/lib/jvm/java-17-openjdk"
+      }
+   ],
+   "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk",
+   "java.trace.server": "off",
+   "java.enabled": true,
+   "java.codeGeneration.useBlocks": true,
+   "java.import.maven.enabled": true,
+   "java.maven.downloadSources": false,
+   "languageserver": {
+      "haskell": {
+         "command": "haskell-language-server",
+         "args": [
+            "--lsp"
+         ],
+         "rootPatterns": [
+            "*.cabal",
+            "stack.yaml",
+            "cabal.project",
+            "package.yaml",
+            "hie.yaml"
+         ],
+         "filetypes": [
+            "haskell",
+            "lhaskell"
+         ]
+      }
+   },
+   "python.linting.enabled": true,
+   "python.linting.mypyEnabled": true
+}
