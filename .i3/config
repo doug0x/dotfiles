@@ -53,6 +53,7 @@ bindsym $mod2+2 workspace $ws2
 bindsym $mod2+3 workspace $ws3
 
 # exec_always
+exec --no-startup-id xmodmap ~/.i3/capsmap
 exec_always --no-startup-id chmod +x ~/.i3/low_battery.sh
 exec_always --no-startup-id chmod +x ~/.i3/script.sh
 exec_always --no-startup-id sh ~/.i3/script.sh
