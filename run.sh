@@ -13,7 +13,7 @@ done
 distro=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
 GIT_DIR=$(find $HOME -name "toolazy" -type d)
 
-mkdir $HOME/.clones && mkdir $HOME/.i3 && mkdir -p $HOME/.config/fish/functions
+mkdir $HOME/.clones && mkdir $HOME/.i3 && mkdir -p $HOME/.config/fish/functions && mkdir $HOME/.config/nvim
 sudo mkdir -p /usr/local/share/lombok
 
 findGitFile() {

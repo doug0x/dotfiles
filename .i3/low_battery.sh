@@ -18,6 +18,7 @@ while true; do
       mpv $HOME/.i3/sinking.mp3 & check_charging
       battery_update=$(cat /sys/class/power_supply/BAT0/capacity)
       if [ "$battery_update" -ge "6" ]; then
+         sleep 200
          continue
       else
         sudo systemctl poweroff
