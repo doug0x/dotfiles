@@ -11,9 +11,9 @@ select de in "i3" "plasma"; do
 done
 
 distro=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
-GIT_DIR=$(find $HOME -name "git" -type d)
+GIT_DIR=$(find $HOME -name "toolazy" -type d)
 
-mkdir $HOME/.clones && mkdir $HOME/.i3 
+mkdir $HOME/.clones && mkdir $HOME/.i3 && mkdir -p $HOME/.config/fish/functions
 sudo mkdir -p /usr/local/share/lombok
 
 findGitFile() {
@@ -46,7 +46,7 @@ fi
 if [[ $de == 'i3' ]]; then
    sudo pacman -S --noconfirm i3 feh pavucontrol picom
    echo "exec i3" > $HOME/.xinitrc
-   createSymlink "config" "$HOME/.i3"
+   ln -s $(findGitFile "config" | sed -n '2p') $HOME/.i3
    createSymlink ".i3status.conf" "$HOME"
    createSymlink "script.sh" "$HOME/.i3"
    createSymlink "low_battery.sh" "$HOME/.i3"
@@ -63,7 +63,7 @@ elif [[ $de == 'plasma' ]]; then
    done
 fi
 
-pip install mariadb mypy telebot yfinance python-binance vectorbt
+pip install mariadb mypy telebot yfinance python-binance vectorbt fastapi
 sudo npm i -g neovim pyright sass node-fetch @angular/cli
 
 while read repo; do
@@ -93,3 +93,5 @@ done
 
 nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 30" -c "q!" -c "q!"
 nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"
+
+sh $(findGitFile "services.sh")
