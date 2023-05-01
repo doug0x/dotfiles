@@ -63,7 +63,7 @@ elif [[ $de == 'plasma' ]]; then
    done
 fi
 
-pip install mariadb mypy telebot yfinance python-binance vectorbt fastapi
+pip install mariadb mypy telebot yfinance python-binance vectorbt fastapi torch
 sudo npm i -g neovim pyright sass node-fetch @angular/cli
 
 while read repo; do
