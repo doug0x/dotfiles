@@ -2,7 +2,7 @@
 
 # Low battery service
 sudo touch /etc/systemd/system/low_battery.service
-sudo echo "[Unit]
+echo "[Unit]
 Description=Low battery... W-we are sinking?
 
 [Service]
@@ -12,7 +12,7 @@ ExecStart=/bin/bash $HOME/.i3/low_battery.sh
 
 [Install]
 WantedBy=default.target
-" > /etc/systemd/system/low_battery.service
+" | sudo tee /etc/systemd/system/low_battery.service
 
 
 sudo systemctl daemon-reload
