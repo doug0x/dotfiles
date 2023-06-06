@@ -34,6 +34,7 @@ sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip 
 sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi
 sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
 sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
+sudo pacman -S --noconfirm dotnet-sdk mono
 
 if [[ $distro == *'Parabola'* ]]; then
    sudo pacman -S --noconfirm icecat
@@ -70,6 +71,7 @@ while read repo; do
    dir="$(echo "$repo" | awk -F '/' '{print $NF}')"
    git clone https://github.com/"$repo" "$HOME/.clones/$dir"
 done < packages/repos.txt
+(cd ~/.clones && git clone https://aur.archlinux.org/mono-msbuild-git.git && cd mono-msbuild-git && makepkg -si --noconfirm)
 
 curl -fLo ~/.vim/plug/plug.vim --create-dirs \
    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -92,6 +94,7 @@ for fun in $(findDir "functions")/*; do
 done
 
 nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 30" -c "q!" -c "q!"
+nvim -u ~/.vimrc -c "OmniSharpInstall" -c "sleep 30" -c "q!" -c "q!"
 nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"
 
 sh $(findGitFile "services.sh")
