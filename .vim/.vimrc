@@ -9,12 +9,10 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'jamestthompson3/nvim-remote-containers'
 Plug 'shime/vim-livedown'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'vim-scripts/SQLComplete.vim'
-Plug 'mechatroner/rainbow_csv'
-Plug 'vim-scripts/SQLUtilities'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'eagletmt/neco-ghc'
+Plug 'omnisharp/omnisharp-vim'
 call plug#end()
 
 
