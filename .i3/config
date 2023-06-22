@@ -39,6 +39,7 @@ bindsym $mod1+s move up
 bindsym Ctrl+$mod2+t exec alacritty
 bindsym $mod1+e fullscreen toggle
 bindsym $mod1+g exec google-chrome-stable
+bindsym $mod1+Shift+g exec firefox
 bindsym $mod1+b exec google-chrome-stable -incognito
 bindsym $mod1+8 exec setxkbmap -layout br && xmodmap ~/.i3/capsmap
 bindsym $mod1+7 exec setxkbmap -layout us && xmodmap ~/.i3/capsmap
