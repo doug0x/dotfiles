@@ -5,6 +5,12 @@ set $mod2 Mod1
 set $ws1 1
 set $ws2 2
 set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
 
 bar {
       status_command i3status
@@ -53,6 +59,12 @@ bindsym $mod1+f kill
 bindsym $mod2+1 workspace $ws1
 bindsym $mod2+2 workspace $ws2
 bindsym $mod2+3 workspace $ws3
+bindsym $mod2+4 workspace $ws4
+bindsym $mod2+5 workspace $ws5
+bindsym $mod2+6 workspace $ws6
+bindsym $mod2+7 workspace $ws7
+bindsym $mod2+8 workspace $ws8
+bindsym $mod2+9 workspace $ws9
 
 # exec_always
 exec --no-startup-id xmodmap ~/.i3/capsmap
