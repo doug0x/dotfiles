@@ -11,6 +11,9 @@ window:
 scrolling:
   history: 0
 
+charset:
+  normal: UTF-8
+
 font:
   size: 9
   normal:
