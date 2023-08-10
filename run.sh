@@ -34,7 +34,7 @@ sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip 
 sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi
 sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
 sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
-sudo pacman -S --noconfirm dotnet-sdk mono nmap
+sudo pacman -S --noconfirm dotnet-sdk mono nmap jq gridsite-clients
 
 if [[ $distro == *'Parabola'* ]]; then
    sudo pacman -S --noconfirm icecat
