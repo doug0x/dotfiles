@@ -54,6 +54,7 @@ bindsym $mod1+n exec redshift -P -O 2100k
 bindsym $mod1+Shift+n exec redshift -P -O 5500k
 bindsym $mod1+p exec deepin-screenshot
 bindsym $mod1+f kill
+bindsym $mod1+o exec code
 
 # workspaces alt
 bindsym $mod2+1 workspace $ws1
@@ -66,7 +67,7 @@ bindsym $mod2+7 workspace $ws7
 bindsym $mod2+8 workspace $ws8
 bindsym $mod2+9 workspace $ws9
 
-# exec_always
+# exec scripts
 exec --no-startup-id xmodmap ~/.i3/capsmap
 exec_always --no-startup-id chmod +x ~/.i3/low_battery.sh
 exec_always --no-startup-id chmod +x ~/.i3/script.sh
