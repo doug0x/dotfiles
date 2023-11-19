@@ -36,10 +36,6 @@ exec alacritty
 
 # look at the moves!
 bindsym $mod2+Tab focus right
-bindsym $mod1+c move right
-bindsym $mod1+x move down
-bindsym $mod1+z move left
-bindsym $mod1+s move up
 
 # general
 bindsym Ctrl+$mod2+t exec alacritty
@@ -55,6 +51,7 @@ bindsym $mod1+Shift+n exec redshift -P -O 5500k
 bindsym $mod1+p exec deepin-screenshot
 bindsym $mod1+f kill
 bindsym $mod1+o exec code
+bindsym $mod1+q exec dbeaver
 
 # workspaces alt
 bindsym $mod2+1 workspace $ws1
