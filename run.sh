@@ -10,7 +10,6 @@ select de in "i3" "plasma"; do
    esac
 done
 
-distro=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
 GIT_DIR=$(find $HOME -name "toolazy" -type d)
 
 mkdir $HOME/.clones && mkdir $HOME/.i3 && mkdir -p $HOME/.config/fish/functions && mkdir $HOME/.config/nvim
@@ -29,20 +28,15 @@ createSymlink () {
 }
 
 sudo pacman -S --noconfirm xorg xorg-xinit neovim tmux alacritty ttf-fira-code mpv
-sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server 
+sudo pacman -S --noconfirm openjdk17-doc java17-openjfx pulseaudio
 sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip redshift
-sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi
-sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
-sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
+sudo pacman -S --noconfirm fzf github-cli docker docker-compose acpi
+sudo pacman -S --noconfirm npm atril deepin-image-viewer deepin-screenshot
+sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip 
 sudo pacman -S --noconfirm dotnet-sdk mono nmap jq gridsite-clients
 
-if [[ $distro == *'Parabola'* ]]; then
-   sudo pacman -S --noconfirm icecat
-
-elif [[ $distro == *'Arch'* ]]; then
-   git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
-   (cd $HOME/.clones/google-chrome && makepkg -si --noconfirm)
-fi
+git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
+(cd $HOME/.clones/google-chrome && makepkg -si --noconfirm)
 
 if [[ $de == 'i3' ]]; then
    sudo pacman -S --noconfirm i3 feh pavucontrol picom
@@ -88,7 +82,6 @@ createSymlink ".alacritty.yml" "$HOME"
 createSymlink ".gitconfig" "$HOME"
 createSymlink ".tmux.conf" "$HOME"
 createSymlink ".vimrc" "$HOME"
-createSymlink ".gitconfig" "$HOME"
 createSymlink "coc-settings.json" "$HOME/.config/nvim"
 createSymlink "config.fish" "$HOME/.config/fish"
 ln -s .i3/wks-flow.md $HOME
