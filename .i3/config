@@ -52,6 +52,7 @@ bindsym $mod1+p exec deepin-screenshot
 bindsym $mod1+f kill
 bindsym $mod1+o exec code
 bindsym $mod1+q exec dbeaver
+bindsym $mod1+m exec gimp 
 
 # workspaces alt
 bindsym $mod2+1 workspace $ws1
