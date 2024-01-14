@@ -1,19 +1,9 @@
 #!/bin/bash
 
-echo "i3 or plasma?"
-select de in "i3" "plasma"; do
-   case $de in
-      i3 )
-         de=i3; break;;
-      plasma )
-         de=plasma; break;;
-   esac
-done
-
-distro=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
+DISTRO=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
 GIT_DIR=$(find $HOME -name "toolazy" -type d)
 
-mkdir $HOME/.clones && mkdir $HOME/.i3 && mkdir -p $HOME/.config/fish/functions && mkdir $HOME/.config/nvim
+mkdir $HOME/.clones; mkdir $HOME/.i3; mkdir -p $HOME/.config/fish/functions; mkdir $HOME/.config/nvim
 sudo mkdir -p /usr/local/share/lombok
 
 findGitFile() {
@@ -28,23 +18,23 @@ createSymlink () {
    ln -s $(findGitFile $1) $2
 }
 
-sudo pacman -S --noconfirm xorg xorg-xinit neovim tmux alacritty ttf-fira-code mpv
-sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server 
-sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip redshift
-sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi
-sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
-sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
-sudo pacman -S --noconfirm dotnet-sdk mono nmap jq gridsite-clients
 
-if [[ $distro == *'Parabola'* ]]; then
-   sudo pacman -S --noconfirm icecat
+if [[ $distro == *'Ubuntu'* ]]; then
+   sudo apt install -y neovim fzf fish mariadb-server mariadb-client nmap npm dbeaver \
+      openjdk-17-jdk openjdk-17-jre
 
 elif [[ $distro == *'Arch'* ]]; then
    git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
-   (cd $HOME/.clones/google-chrome && makepkg -si --noconfirm)
-fi
+   (cd $HOME/.clones/google-chrome; makepkg -si --noconfirm)
 
-if [[ $de == 'i3' ]]; then
+   sudo pacman -S --noconfirm xorg xorg-xinit neovim tmux alacritty ttf-fira-code mpv
+   sudo pacman -S --noconfirm openjdk17-doc java17-openjfx stack haskell-language-server 
+   sudo pacman -S --noconfirm fish tree mariadb dbeaver lazygit wget uvicorn unzip redshift
+   sudo pacman -S --noconfirm fzf github-cli docker docker-compose cabal-install acpi
+   sudo pacman -S --noconfirm neofetch npm atril deepin-image-viewer deepin-screenshot
+   sudo pacman -S --noconfirm nvidia xf86-video-amdgpu obs-studio code python-pip pulseaudio
+   sudo pacman -S --noconfirm dotnet-sdk mono nmap jq gridsite-clients
+
    sudo pacman -S --noconfirm i3 feh pavucontrol picom
    echo "exec i3" > $HOME/.xinitrc
    ln -s $(findGitFile "config" | sed -n '2p') $HOME/.i3
@@ -54,33 +44,26 @@ if [[ $de == 'i3' ]]; then
    createSymlink "sinking.mp3" "$HOME/.i3"
    createSymlink "capsmap" "$HOME/.i3"
    createSymlink ".picom.conf" "$HOME"
-elif [[ $de == 'plasma' ]]; then
-   sudo pacman -S --noconfirm plasma
-   echo -e "export DESKTOP_SESSION=plasma\nexec startplasma-x11" > $HOME/.xinitrc
-   git clone https://github.com/Prayag2/kde_onedark "$HOME/.clones/kde_onedark"
-   sh $HOME/.clones/kde_onedark/install --noconfirm
-   for config in $(findDir "kde")/*; do
-      ln -s $config $HOME/.config
-   done
+   ln -s .i3/wks-flow.md $HOME
+
+   (cd ~/.clones; git clone https://aur.archlinux.org/mono-msbuild-git.git; \
+      cd mono-msbuild-git; makepkg -si --noconfirm)
+
+   sudo wget https://projectlombok.org/downloads/lombok.jar \
+      -O /usr/local/share/lombok/lombok.jar
+
+   sh $(findGitFile "services.sh")
 fi
 
-pip install --break-system-packages mariadb i3ipc
-# pip install telebot yfinance python-binance vectorbt fastapi
-
 sudo npm i -g neovim pyright
-# sudo npm i -g sass node-fetch @angular/cli
 
-while read repo; do
-   dir="$(echo "$repo" | awk -F '/' '{print $NF}')"
-   git clone https://github.com/"$repo" "$HOME/.clones/$dir"
+while read REPO; do
+   DIR="$(echo "$REPO" | awk -F '/' '{print $NF}')"
+   git clone https://github.com/"$REPO" "$HOME/.clones/$DIR"
 done < packages/repos.txt
-(cd ~/.clones && git clone https://aur.archlinux.org/mono-msbuild-git.git && 
-   cd mono-msbuild-git && makepkg -si --noconfirm)
 
 curl -fLo ~/.vim/plug/plug.vim --create-dirs \
    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-sudo wget https://projectlombok.org/downloads/lombok.jar \
-   -O /usr/local/share/lombok/lombok.jar
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
 # standard links
@@ -91,17 +74,13 @@ createSymlink ".vimrc" "$HOME"
 createSymlink ".gitconfig" "$HOME"
 createSymlink "coc-settings.json" "$HOME/.config/nvim"
 createSymlink "config.fish" "$HOME/.config/fish"
-ln -s .i3/wks-flow.md $HOME
 
 # Fish functions link
-for fun in $(findDir "functions")/*; do
-   ln -s $fun $HOME/.config/fish/functions
+for FUN in $(findDir "functions")/*; do
+   ln -s $FUN $HOME/.config/fish/functions
 done
 
 nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 30" -c "q!" -c "q!"
 nvim -u ~/.vimrc -c "OmniSharpInstall" -c "sleep 30" -c "q!" -c "q!"
-nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json 
-   coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp
-   | sleep 180 | q! | q!"
+nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"
 
-sh $(findGitFile "services.sh")
