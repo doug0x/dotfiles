@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DISTRO=$(grep -E '^(PRETTY_NAME|NAME)=' /etc/os-release)
+DISTRO=$(grep -E '^(NAME)=' /etc/os-release)
 GIT_DIR=$(find $HOME -name "toolazy" -type d)
 
 mkdir $HOME/.clones; mkdir $HOME/.i3; mkdir -p $HOME/.config/fish/functions; mkdir $HOME/.config/nvim
@@ -20,8 +20,8 @@ createSymlink () {
 
 
 if [[ $distro == *'Ubuntu'* ]]; then
-   sudo apt install -y neovim fzf fish mariadb-server mariadb-client nmap npm dbeaver \
-      openjdk-17-jdk openjdk-17-jre
+   sudo apt install -y neovim fzf fish mariadb-server mariadb-client nmap npm  \
+      openjdk-17-jdk openjdk-17-jre fonts-firacode mpv
 
 elif [[ $distro == *'Arch'* ]]; then
    git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
