@@ -3,8 +3,7 @@
 DISTRO=$(grep -E '^(NAME)=' /etc/os-release)
 GIT_DIR=$(find $HOME -name "toolazy" -type d)
 
-mkdir $HOME/.clones; mkdir $HOME/.i3; mkdir -p $HOME/.config/fish/functions; mkdir $HOME/.config/nvim
-sudo mkdir -p /usr/local/share/lombok
+mkdir $HOME/.clones; mkdir -p $HOME/.config/fish/functions; mkdir $HOME/.config/nvim
 
 findGitFile() {
    find $GIT_DIR -name $1 -type f
@@ -18,12 +17,23 @@ createSymlink () {
    ln -s $(findGitFile $1) $2
 }
 
-
-if [[ $distro == *'Ubuntu'* ]]; then
+if [[ $DISTRO == *'Ubuntu'* ]]; then
    sudo apt install -y neovim fzf fish mariadb-server mariadb-client nmap npm  \
-      openjdk-17-jdk openjdk-17-jre fonts-firacode mpv
+      openjdk-17-jdk openjdk-17-jre openjdk-8-jdk fonts-firacode python3-pip 
 
-elif [[ $distro == *'Arch'* ]]; then
+   sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+   sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+
+   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" \
+      | grep -Po '"tag_name": "v\K[^"]*')
+   curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_\
+      ${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+   tar xf lazygit.tar.gz lazygit
+   sudo install lazygit /usr/local/bin
+
+elif [[ $DISTRO == *'Arch'* ]]; then
+   mkdir $HOME/.i3
+   sudo mkdir -p /usr/local/share/lombok
    git clone https://aur.archlinux.org/google-chrome.git $HOME/.clones/google-chrome
    (cd $HOME/.clones/google-chrome; makepkg -si --noconfirm)
 
@@ -56,6 +66,7 @@ elif [[ $distro == *'Arch'* ]]; then
 fi
 
 sudo npm i -g neovim pyright
+pip install pylint
 
 while read REPO; do
    DIR="$(echo "$REPO" | awk -F '/' '{print $NF}')"
