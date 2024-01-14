@@ -9,7 +9,7 @@ window:
   opacity: 0.90
 
 scrolling:
-  history: 0
+  history: 20000
 
 charset:
   normal: UTF-8
