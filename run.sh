@@ -19,14 +19,15 @@ createSymlink () {
 
 if [[ $DISTRO == *'Ubuntu'* ]]; then
    sudo apt install -y neovim fzf fish mariadb-server mariadb-client nmap npm  \
-      openjdk-17-jdk openjdk-17-jre openjdk-8-jdk fonts-firacode python3-pip 
+      openjdk-17-jdk openjdk-17-jre openjdk-8-jdk fonts-firacode python3-pip
 
    sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
    sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
 
    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" \
       | grep -Po '"tag_name": "v\K[^"]*')
-   curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_\
+   curl -Lo lazygit.tar.gz \
+      "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_\
       ${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
    tar xf lazygit.tar.gz lazygit
    sudo install lazygit /usr/local/bin
@@ -66,7 +67,6 @@ elif [[ $DISTRO == *'Arch'* ]]; then
 fi
 
 sudo npm i -g neovim pyright
-pip install pylint
 
 while read REPO; do
    DIR="$(echo "$REPO" | awk -F '/' '{print $NF}')"
@@ -82,7 +82,6 @@ createSymlink ".alacritty.yml" "$HOME"
 createSymlink ".gitconfig" "$HOME"
 createSymlink ".tmux.conf" "$HOME"
 createSymlink ".vimrc" "$HOME"
-createSymlink ".gitconfig" "$HOME"
 createSymlink "coc-settings.json" "$HOME/.config/nvim"
 createSymlink "config.fish" "$HOME/.config/fish"
 
@@ -93,5 +92,6 @@ done
 
 nvim -u ~/.vimrc -c "PlugInstall" -c "sleep 30" -c "q!" -c "q!"
 nvim -u ~/.vimrc -c "OmniSharpInstall" -c "sleep 30" -c "q!" -c "q!"
-nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright coc-git coc-sh coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"
+nvim -u ~/.vimrc -c "autocmd VimEnter * CocInstall coc-tsserver coc-java coc-json coc-pyright \
+   coc-git coc-sh coc-git coc-html coc-css coc-snippets coc-vimlsp | sleep 180 | q! | q!"
 
