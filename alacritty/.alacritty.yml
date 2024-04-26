@@ -6,7 +6,7 @@ shell:
   program: tmux
 
 window:
-  opacity: 0.90
+  opacity: 0.87
 
 scrolling:
   history: 20000

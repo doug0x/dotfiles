@@ -15,7 +15,6 @@ Plug 'eagletmt/neco-ghc'
 Plug 'omnisharp/omnisharp-vim'
 call plug#end()
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,7 +31,6 @@ set t_Co=256                            " Support 256 colors
 set conceallevel=2                      " So that I can see `` in markdown files
 set tabstop=2                           " Insert 2 spaces for a tab
 set shiftwidth=3                        " Change the number of space characters inserted for indentation
-set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
 set laststatus=0                        " Always display the status line
@@ -233,7 +231,7 @@ nnoremap <M-h>:vertical resize -2<CR>
 nnoremap <M-l>:vertical resize +2<CR>
 
 " Jump between pairs
-nnoremap <S-q> %
+vnoremap <S-q> %
 
 " TAB in general mode will move to text buffer
 nnoremap <TAB> :bnext<CR>
