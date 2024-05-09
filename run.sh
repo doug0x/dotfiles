@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DISTRO=$(grep -E '^(NAME)=' /etc/os-release)
-GIT_DIR=$(find $HOME -name "toolazy" -type d)
+GIT_DIR=$(find $HOME -name "denv" -type d)
 
 mkdir $HOME/.clones; mkdir -p $HOME/.config/fish/functions; mkdir $HOME/.config/nvim
 
@@ -21,8 +21,8 @@ if [[ $DISTRO == *'Ubuntu'* ]]; then
    sudo apt install -y neovim fzf fish mariadb-server mariadb-client nmap npm  \
       openjdk-17-jdk openjdk-17-jre openjdk-8-jdk fonts-firacode python3-pip
 
-   sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
-   sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+   sudo update-alternatives --set java /usr/lib/jvm/java-1.17.0-openjdk-amd64/bin/java
+   sudo update-alternatives --set javac /usr/lib/jvm/java-1.17.0-openjdk-amd64/bin/javac
 
    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" \
       | grep -Po '"tag_name": "v\K[^"]*')
@@ -79,7 +79,6 @@ sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
 # standard links
 createSymlink ".alacritty.yml" "$HOME"
-createSymlink ".gitconfig" "$HOME"
 createSymlink ".tmux.conf" "$HOME"
 createSymlink ".vimrc" "$HOME"
 createSymlink "coc-settings.json" "$HOME/.config/nvim"
