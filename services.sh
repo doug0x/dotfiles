@@ -17,4 +17,3 @@ WantedBy=default.target
 
 sudo systemctl daemon-reload
 sudo systemctl enable low_battery.service
-sudo systemctl reboot
