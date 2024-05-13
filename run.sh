@@ -19,7 +19,8 @@ createSymlink () {
 
 if [[ $DISTRO == *'Ubuntu'* ]]; then
    sudo apt install -y neovim fzf fish mariadb-server mariadb-client nmap npm  \
-      openjdk-17-jdk openjdk-17-jre openjdk-8-jdk fonts-firacode python3-pip
+      openjdk-17-jdk openjdk-17-jre openjdk-8-jdk fonts-firacode python3-pip \ 
+      virt-manager
 
    sudo update-alternatives --set java /usr/lib/jvm/java-1.17.0-openjdk-amd64/bin/java
    sudo update-alternatives --set javac /usr/lib/jvm/java-1.17.0-openjdk-amd64/bin/javac
