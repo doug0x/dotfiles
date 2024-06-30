@@ -283,49 +283,51 @@ autocmd FileType java map <buffer> <F7> :w<CR>:exec '!java' shellescape(@%, 1)<C
 " Java juices
 "" Inserting header
 function! InsertJavaHeader()
-    " get current dir relative to src
-    let l:current_dir = expand('%:p:h') " diretório atual do arquivo
-    let l:src_index = substitute(l:current_dir, '^.*src/', '', '') " every dir after src
-    let l:package_name = substitute(l:src_index, '/', '.', 'g') " convertion to java dot notation for package
-      
-    " create header
-    let l:header = "package " . l:package_name . ";\n\n"
-    let l:header .= "public class " . expand('%:t:r') . " {\n"
-    let l:header .= "   \n"
-    let l:header .= "}\n"
+   " get current dir relative to src
+   let l:current_dir = expand('%:p:h') " get current dir
+   let l:src_index = substitute(l:current_dir, '^.*src/', '', '') " get substring without src/
+   let l:package_name = substitute(l:src_index, '/', '.', 'g') " replace / to .
 
-    " insert header
-    execute '0put =l:header'
+   " create header
+   let l:header = "package " . l:package_name . ";\n\n"
+   if expand('%:t') =~ '^I.*\.java$'
+      let l:header .= "public interface " . expand('%:t:r') . " {\n"
+      let l:header .= "   \n"
+      let l:header .= "}\n"
+   else
+      let l:header .= "public class " . expand('%:t:r') . " {\n"
+      let l:header .= "   \n"
+      let l:header .= "}\n"
+   endif
+
+   " insert header
+   execute '0put =l:header'
 endfunction
 
 "" map newjava to vim
 autocmd BufNewFile *.java call InsertJavaHeader()
 
-
-"" Inserting javadoc for method
-inoremap jdocm <esc>:call AppendJavadocMethod()<CR>
-
-function! AppendJavadocMethod()
-    call append(line('.'), '/**')
-    call append(line('.') + 1, ' * ')
-    call append(line('.') + 2, ' * ')
-    call append(line('.') + 3, ' * @param ')
-    call append(line('.') + 4, ' * @return ')
-    call append(line('.') + 5, ' * @throws ')
-    call append(line('.') + 6, ' */')
-    normal! j
-endfunction
-
-"" Inserting javadoc for header
-inoremap jdoch <esc>:call AppendJavadocHeader()<CR>
-
+"" Inserting javadoc
 function! AppendJavadocHeader()
-    call append(line('.'), '/**')
-    call append(line('.') + 1, ' * ')
-    call append(line('.') + 2, ' * ')
-    call append(line('.') + 3, ' * @author')
-    call append(line('.') + 4, ' * @version')
-    call append(line('.') + 5, ' */')
-    normal! j
+   call append(line('.'), '/**')
+   call append(line('.') + 1, ' * ')
+   call append(line('.') + 2, ' * ')
+   call append(line('.') + 3, ' * @author')
+   call append(line('.') + 4, ' * @version')
+   call append(line('.') + 5, ' */')
+   normal! j
 endfunction
+function! AppendJavadocMethod()
+   call append(line('.'), '/**')
+   call append(line('.') + 1, ' * ')
+   call append(line('.') + 2, ' * ')
+   call append(line('.') + 3, ' * @param ')
+   call append(line('.') + 4, ' * @return ')
+   call append(line('.') + 5, ' * @throws ')
+   call append(line('.') + 6, ' */')
+   normal! j
+endfunction
+
+inoremap jdoch <esc>:call AppendJavadocHeader()<CR>
+inoremap jdocm <esc>:call AppendJavadocMethod()<CR>
 
