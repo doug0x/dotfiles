@@ -244,7 +244,6 @@ inoremap { {}<left>
 inoremap {- {--}<left><left>
 inoremap {# {-# -}<left><left>
 inoremap {\| {-\|-}<left><left>
-inoremap {; {};<left><left>
 
 " Use alt + hjkl to resize windows
 nnoremap <M-j>:resize -2<CR>
@@ -280,3 +279,53 @@ autocmd FileType javascript map <buffer> <F4> :w<CR>:exec '!node' shellescape(@%
 autocmd FileType sh map <buffer> <F5> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
 autocmd FileType haskell map <buffer> <F6> :w<CR>:exec '!stack runghc --' shellescape(@%, 1)<CR>
 autocmd FileType java map <buffer> <F7> :w<CR>:exec '!java' shellescape(@%, 1)<CR>
+
+" Java juices
+"" Inserting header
+function! InsertJavaHeader()
+    " get current dir relative to src
+    let l:current_dir = expand('%:p:h') " diretório atual do arquivo
+    let l:src_index = substitute(l:current_dir, '^.*src/', '', '') " every dir after src
+    let l:package_name = substitute(l:src_index, '/', '.', 'g') " convertion to java dot notation for package
+      
+    " create header
+    let l:header = "package " . l:package_name . ";\n\n"
+    let l:header .= "public class " . expand('%:t:r') . " {\n"
+    let l:header .= "   \n"
+    let l:header .= "}\n"
+
+    " insert header
+    execute '0put =l:header'
+endfunction
+
+"" map newjava to vim
+autocmd BufNewFile *.java call InsertJavaHeader()
+
+
+"" Inserting javadoc for method
+inoremap jdocm <esc>:call AppendJavadocMethod()<CR>
+
+function! AppendJavadocMethod()
+    call append(line('.'), '/**')
+    call append(line('.') + 1, ' * ')
+    call append(line('.') + 2, ' * ')
+    call append(line('.') + 3, ' * @param ')
+    call append(line('.') + 4, ' * @return ')
+    call append(line('.') + 5, ' * @throws ')
+    call append(line('.') + 6, ' */')
+    normal! j
+endfunction
+
+"" Inserting javadoc for header
+inoremap jdoch <esc>:call AppendJavadocHeader()<CR>
+
+function! AppendJavadocHeader()
+    call append(line('.'), '/**')
+    call append(line('.') + 1, ' * ')
+    call append(line('.') + 2, ' * ')
+    call append(line('.') + 3, ' * @author')
+    call append(line('.') + 4, ' * @version')
+    call append(line('.') + 5, ' */')
+    normal! j
+endfunction
+
