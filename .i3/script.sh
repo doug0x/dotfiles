@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GIT_DIR=$(find $HOME -name "denv" -type d)
+GIT_DIR=$(find $HOME -name "dotfiles" -type d)
 
 findGitFile() {
    find $GIT_DIR -name $1 -type f
