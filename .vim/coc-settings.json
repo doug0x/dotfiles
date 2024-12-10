@@ -11,5 +11,18 @@
    "java.import.maven.enabled": true,
    "java.maven.downloadSources": false,
    "python.linting.enabled": true,
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+
+   "languageserver": {
+     "ccls": {
+       "command": "ccls",
+       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+       "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+       "initializationOptions": {
+           "cache": {
+             "directory": "/tmp/ccls"
+           }
+         }
+     }
+   }
 }
