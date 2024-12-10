@@ -279,6 +279,7 @@ autocmd FileType javascript map <buffer> <F4> :w<CR>:exec '!node' shellescape(@%
 autocmd FileType sh map <buffer> <F5> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
 autocmd FileType haskell map <buffer> <F6> :w<CR>:exec '!stack runghc --' shellescape(@%, 1)<CR>
 autocmd FileType java map <buffer> <F7> :w<CR>:exec '!java' shellescape(@%, 1)<CR>
+autocmd FileType cpp map <buffer> <F8> :w<CR>:exec '!g++ -g -o %:r % && ./%:r'<CR>
 
 " Java juices
 "" Inserting header
@@ -304,7 +305,7 @@ function! InsertJavaHeader()
    execute '0put =l:header'
 endfunction
 
-"" map newjava to vim
+"" Map newfile
 autocmd BufNewFile *.java call InsertJavaHeader()
 
 "" Inserting javadoc
