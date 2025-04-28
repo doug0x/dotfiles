@@ -266,9 +266,6 @@ nnoremap <C-a> :bw<CR>
 " Alternate way to save
 nnoremap <C-s> :w<CR>
 
-" Open Explore
-nnoremap <C-q> :Ex<CR>
-
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
@@ -332,3 +329,57 @@ endfunction
 inoremap jdoch <esc>:call AppendJavadocHeader()<CR>
 inoremap jdocm <esc>:call AppendJavadocMethod()<CR>
 
+" tree
+
+lua << EOF
+
+   vim.g.loaded_netrw = 1
+   vim.g.loaded_netrwPlugin = 1
+
+   require("nvim-tree").setup({
+     view = {
+       width = 30,
+     },
+     renderer = {
+       icons = {
+         glyphs = {
+           default = "",
+           symlink = "",
+           folder = {
+             arrow_closed = "▶",
+             arrow_open = "▼",
+             default = "",
+             open = "",
+             empty = "",
+             empty_open = "",
+             symlink = "",
+             symlink_open = "",
+           },
+           git = {
+             unstaged = "",
+             staged = "✓",
+             unmerged = "",
+             renamed = "➜",
+             untracked = "",
+             deleted = "",
+             ignored = "◌",
+           },
+         },
+         show = {
+           file = true,
+           folder = true,
+           folder_arrow = true,
+           git = true,
+         },
+       },
+     },
+   })
+
+   require('nvim-web-devicons').setup({
+     override = {},
+     default = true
+   })
+
+   vim.api.nvim_set_keymap('q', '<C-q>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+   vim.api.nvim_set_keymap('q', '<leader>q', ':NvimTreeFindFile<CR>', {noremap = true, silent = true})
+EOF
