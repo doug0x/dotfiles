@@ -29,14 +29,24 @@ TERM = "tmux-256color"
 size = 9
 
 [font.normal]
-family = "Fira Code"
+family = "Hack Nerd Font"
 style = "Regular"
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
 
 [scrolling]
 history = 20000
 
-[shell]
+[terminal.shell]
 program = "tmux"
 
 [window]
-opacity = 0.87
+opacity = 0.85
+
+[terminal]
