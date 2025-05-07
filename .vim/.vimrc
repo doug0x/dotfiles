@@ -22,7 +22,7 @@ call plug#end()
 
 " set leader key
 let g:mapleader = "\<Space>"
-
+filetype plugin indent on
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set encoding=utf-8                      " The encoding displayed
 set pumheight=10                        " Makes popup menu smaller
@@ -30,7 +30,7 @@ set fileencoding=utf-8                  " The encoding written to file
 set mouse=a                             " Enable your mouse
 set t_Co=256                            " Support 256 colors
 set conceallevel=2                      " So that I can see `` in markdown files
-set tabstop=2                           " Insert 2 spaces for a tab
+set tabstop=3                           " Insert 3 spaces for a tab
 set shiftwidth=3                        " Change the number of space characters inserted for indentation
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
@@ -50,10 +50,15 @@ set formatoptions-=o                    " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 set number relativenumber               " Hybrid line number
 
+augroup filetype_indent
+  autocmd!
+  autocmd FileType javascript,typescript,sh,cpp,java,haskell,python setlocal tabstop=3 shiftwidth=3 softtabstop=3 expandtab
+  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType make setlocal noexpandtab
+augroup END
+
 " You can't stop me
 cmap w!! w !sudo tee % 
-
-filetype plugin indent on
 syntax enable
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_viewer = 'okular'
