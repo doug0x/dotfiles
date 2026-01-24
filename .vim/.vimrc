@@ -14,6 +14,12 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'eagletmt/neco-ghc'
 Plug 'omnisharp/omnisharp-vim'
 Plug 'andweeb/presence.nvim'
+
+Plug 'vim-test/vim-test'                      " exec tests
+Plug 'tpope/vim-dispatch'                     " assync exec
+Plug 'tpope/vim-projectionist'                " project nav
+Plug 'folke/which-key.nvim'                   " shortcuts
+Plug 'michaelb/sniprun', {'do': 'bash install.sh'} " exec paths
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -22,7 +28,7 @@ call plug#end()
 
 " set leader key
 let g:mapleader = "\<Space>"
-
+filetype plugin indent on
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set encoding=utf-8                      " The encoding displayed
 set pumheight=10                        " Makes popup menu smaller
@@ -30,10 +36,11 @@ set fileencoding=utf-8                  " The encoding written to file
 set mouse=a                             " Enable your mouse
 set t_Co=256                            " Support 256 colors
 set conceallevel=2                      " So that I can see `` in markdown files
-set tabstop=2                           " Insert 2 spaces for a tab
+set tabstop=3                           " Insert 2 spaces for a tab
 set shiftwidth=3                        " Change the number of space characters inserted for indentation
 set expandtab                           " Converts tabs to spaces
-set smartindent                         " Makes indenting smart
+set smartindent
+set softtabstop=3
 set laststatus=0                        " Always display the status line
 set number                              " Line numbers
 set cursorline                          " Track (this) line
@@ -50,11 +57,23 @@ set formatoptions-=o                    " Stop newline continution of comments
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 set number relativenumber               " Hybrid line number
 
+augroup filetype_indent
+  autocmd!
+  autocmd FileType javascript,typescript,sh,cpp,java,haskell,python setlocal tabstop=3 shiftwidth=3 softtabstop=3 expandtab
+  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType make setlocal noexpandtab
+augroup END
+
 " You can't stop me
 cmap w!! w !sudo tee % 
-
-filetype plugin indent on
 syntax enable
+let g:coc_global_extensions = [
+  \ 'coc-java',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-snippets',
+  \ 'coc-pairs'
+  \ ]
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
@@ -153,6 +172,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <silent> K :call CocAction('doHover')<CR>
+
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -244,7 +265,6 @@ inoremap { {}<left>
 inoremap {- {--}<left><left>
 inoremap {# {-# -}<left><left>
 inoremap {\| {-\|-}<left><left>
-inoremap {; {};<left><left>
 
 " Use alt + hjkl to resize windows
 nnoremap <M-j>:resize -2<CR>
@@ -267,9 +287,6 @@ nnoremap <C-a> :bw<CR>
 " Alternate way to save
 nnoremap <C-s> :w<CR>
 
-" Open Explore
-nnoremap <C-q> :Ex<CR>
-
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
@@ -279,3 +296,155 @@ autocmd FileType python map <buffer> <F3> :w<CR>:exec '!python3' shellescape(@%,
 autocmd FileType javascript map <buffer> <F4> :w<CR>:exec '!node' shellescape(@%, 1)<CR>
 autocmd FileType sh map <buffer> <F5> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
 autocmd FileType haskell map <buffer> <F6> :w<CR>:exec '!stack runghc --' shellescape(@%, 1)<CR>
+autocmd FileType cpp map <buffer> <F8> :w<CR>:exec '!g++ -g -o %:r % && ./%:r'<CR>
+
+" Java juices
+"
+" raw java
+autocmd FileType java map <buffer> <F7> :w<CR>:exec '!java' shellescape(@%, 1)<CR>
+
+" Spring Boot utils
+autocmd FileType java nnoremap <buffer> <leader>jc :CocCommand java.action.navigateToSuperMethod<CR>
+autocmd FileType java nnoremap <buffer> <leader>jo :CocCommand java.open.serverLog<CR>
+autocmd FileType java nnoremap <buffer> <leader>jv :CocCommand java.show.serverStatus<CR>
+
+command! SpringRun :!./mvnw spring-boot:run
+command! SpringTest :!./mvnw test
+command! SpringBuild :!./mvnw clean package
+command! GradleRun :!./gradlew bootRun
+command! GradleTest :!./gradlew test
+
+" Atalhos rápidos
+autocmd FileType java nnoremap <buffer> <leader>sr :SpringRun<CR>
+autocmd FileType java nnoremap <buffer> <leader>st :SpringTest<CR>
+autocmd FileType java nnoremap <buffer> <leader>sb :SpringBuild<CR>
+autocmd FileType java nnoremap <buffer> <leader>gr :GradleRun<CR>
+
+" Create a new spring file
+autocmd FileType java nnoremap <buffer> <leader>nc :CocCommand java.action.navigateToNewClass<CR>
+
+" Generate getters/setters
+autocmd FileType java nnoremap <buffer> <leader>gs :CocCommand java.generate.accessors<CR>
+
+" Fast exec
+autocmd FileType java nnoremap <buffer> <F9> :SpringBootRun<CR>
+autocmd FileType java nnoremap <buffer> <F10> :SpringBootTest<CR>
+autocmd FileType java nnoremap <buffer> <F11> :SpringBootBuild<CR>
+
+" generate spring b code
+autocmd FileType java nnoremap <buffer> <leader>jg :CocCommand spring.initializr.createProject<CR>
+autocmd FileType java nnoremap <buffer> <leader>jd :CocCommand spring.boot.dashboard.open<CR>
+
+let test#strategy = "dispatch"
+let test#java#runner = 'gradletest'  " ou 'maventest'
+let test#java#gradletest#executable = './gradlew test'
+let test#java#maventest#executable = './mvnw test'
+
+" spring files will be highlighted
+autocmd BufRead,BufNewFile *.java set filetype=java
+autocmd BufRead,BufNewFile application*.yml set filetype=yaml
+autocmd BufRead,BufNewFile application*.properties set filetype=conf
+autocmd BufRead,BufNewFile pom.xml set filetype=xml
+autocmd BufRead,BufNewFile *.gradle set filetype=groovy
+
+" Specific indent
+autocmd FileType java setlocal shiftwidth=4 tabstop=4 expandtab
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType xml setlocal shiftwidth=2 tabstop=2 expandtab
+
+" test shortcuts
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+
+
+"" Inserting header
+"  function! InsertJavaHeader()
+"     " get current dir relative to src
+"     let l:current_dir = expand('%:p:h') " get current dir
+"     let l:src_index = substitute(l:current_dir, '^.*src/', '', '') " get substring without src/
+"     let l:package_name = substitute(l:src_index, '/', '.', 'g') " replace / to .
+
+"     " create header
+"     let l:header = "package " . l:package_name . ";\n\n"
+"     if expand('%:t') =~ '^I.*\.java$'
+"        let l:header .= "public interface " . expand('%:t:r') . " {\n"
+"        let l:header .= "   \n"
+"        let l:header .= "}\n"
+"     else
+"        let l:header .= "public class " . expand('%:t:r') . " {\n"
+"        let l:header .= "   \n"
+"        let l:header .= "}\n"
+"     endif
+
+"     " insert header
+"     execute '0put =l:header'
+"  endfunction
+
+"  "" Map newfile
+"  autocmd BufNewFile *.java call InsertJavaHeader()
+
+
+" Create spring boot project
+" usage:
+" :SpringInit web,data-jpa,postgresql
+command! -nargs=* SpringInit execute '!curl https://start.spring.io/starter.zip -d dependencies=' . <q-args> . ' -o /tmp/project.zip && unzip /tmp/project.zip'
+
+" tree
+
+lua <<EOF
+require("nvim-tree").setup({
+  view = {
+    width = 30,
+  },
+  filters = {
+    dotfiles = false,
+    custom = {
+      '^\\.git$',
+      '^\\.idea$',
+      '^\\.vscode$',
+      '^node_modules$',
+      '^target$',      -- Ignora pasta target do Maven
+      '^build$',       -- Ignora pasta build do Gradle
+      '^\\.gradle$'
+    }
+  },
+  renderer = {
+    icons = {
+      glyphs = {
+        default = "",
+        symlink = "",
+        folder = {
+          arrow_closed = "▶",
+          arrow_open = "▼",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+        git = {
+          unstaged = "",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "",
+          deleted = "",
+          ignored = "◌",
+        },
+      },
+    },
+    highlight_opened_files = "all",
+  },
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+  },
+})
+
+vim.api.nvim_set_keymap('n', '<C-q>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeFindFile<CR>', {noremap = true, silent = true})
+EOF
