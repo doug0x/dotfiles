@@ -1,15 +1,71 @@
 {
+   "coc.preferences.formatOnSave": true,
+   "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
+   "java.references.includeAccessors": true,
+   "java.signatureHelp.enabled": true,
+   "java.trace.server": "messages",
+   "java.configuration.checkProjectSettingsExclusions": false,
+   "java.completion.enabled": true,
+   "java.completion.favoriteStaticMembers": [
+      "org.junit.Assert.*",
+      "org.junit.Assume.*",
+      "org.junit.jupiter.api.Assertions.*",
+      "org.junit.jupiter.api.Assumptions.*",
+      "org.junit.jupiter.api.DynamicContainer.*",
+      "org.junit.jupiter.api.DynamicTest.*",
+      "org.mockito.Mockito.*",
+      "org.mockito.ArgumentMatchers.*",
+      "org.mockito.Answers.*",
+      "org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*",
+      "org.springframework.test.web.servlet.result.MockMvcResultMatchers.*"
+   ],
+   "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+   "java.format.settings.profile": "GoogleStyle",
+   "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+   "java.configuration.maven.userSettings": "/path/to/settings.xml",
+   "java.compile.nullAnalysis.mode": "automatic",
+   "java.completion.importOrder": [
+      "java",
+      "javax",
+      "com",
+      "org"
+   ],
+   "java.debug.settings.showStaticVariables": true,
+   "java.debug.settings.showQualifiedNames": false,
    "java.configuration.runtimes": [
       {
          "name": "JavaSE-17",
          "path": "/usr/lib/jvm/java-17-openjdk-amd64"
       }
    ],
-   "java.trace.server": "off",
    "java.enabled": true,
    "java.codeGeneration.useBlocks": true,
    "java.import.maven.enabled": true,
    "java.maven.downloadSources": false,
    "python.linting.enabled": true,
-  "snippets.ultisnips.pythonPrompt": false
+   "snippets.ultisnips.pythonPrompt": false,
+   "languageserver": {
+      "clangd": {
+         "command": "clangd",
+         "filetypes": [
+            "c",
+            "cc",
+            "cpp",
+            "c++",
+            "objc",
+            "objcpp"
+         ],
+         "rootPatterns": [
+            ".clangd",
+            "compile_commands.json",
+            ".git/",
+            ".hg/"
+         ],
+         "initializationOptions": {
+            "cache": {
+               "directory": "/tmp/clangd"
+            }
+         }
+      }
+   }
 }
