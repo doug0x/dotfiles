@@ -1,0 +1,4 @@
+# Neovim providers and language tooling installed globally.
+neovim
+pyright
+

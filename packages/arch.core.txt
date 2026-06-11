@@ -1,0 +1,22 @@
+# Core terminal workstation.
+alacritty
+base-devel
+clang
+cmake
+curl
+fd
+fish
+fzf
+git
+jq
+neovim
+npm
+openjdk17-openjdk
+python-pip
+ripgrep
+tmux
+tree
+ttf-fira-code
+unzip
+wget
+

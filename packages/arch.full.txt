@@ -1,0 +1,6 @@
+# Extra workstation tools that are useful but not part of the core terminal.
+docker
+docker-compose
+mariadb
+nmap
+virt-manager

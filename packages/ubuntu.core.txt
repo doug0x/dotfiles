@@ -1,0 +1,22 @@
+# Core terminal workstation.
+alacritty
+build-essential
+clangd
+cmake
+curl
+fd-find
+fish
+fonts-firacode
+fzf
+git
+jq
+neovim
+npm
+openjdk-17-jdk
+python3-pip
+ripgrep
+tmux
+tree
+unzip
+wget
+

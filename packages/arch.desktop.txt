@@ -1,0 +1,11 @@
+# Optional i3 desktop layer.
+acpi
+feh
+i3-wm
+i3status
+pavucontrol
+picom
+redshift
+xorg-server
+xorg-xinit
+
