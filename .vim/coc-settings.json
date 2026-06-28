@@ -1,71 +1,91 @@
 {
-   "coc.preferences.formatOnSave": true,
-   "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
-   "java.references.includeAccessors": true,
-   "java.signatureHelp.enabled": true,
-   "java.trace.server": "messages",
-   "java.configuration.checkProjectSettingsExclusions": false,
-   "java.completion.enabled": true,
-   "java.completion.favoriteStaticMembers": [
-      "org.junit.Assert.*",
-      "org.junit.Assume.*",
-      "org.junit.jupiter.api.Assertions.*",
-      "org.junit.jupiter.api.Assumptions.*",
-      "org.junit.jupiter.api.DynamicContainer.*",
-      "org.junit.jupiter.api.DynamicTest.*",
-      "org.mockito.Mockito.*",
-      "org.mockito.ArgumentMatchers.*",
-      "org.mockito.Answers.*",
-      "org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*",
-      "org.springframework.test.web.servlet.result.MockMvcResultMatchers.*"
-   ],
-   "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
-   "java.format.settings.profile": "GoogleStyle",
-   "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
-   "java.configuration.maven.userSettings": "/path/to/settings.xml",
-   "java.compile.nullAnalysis.mode": "automatic",
-   "java.completion.importOrder": [
-      "java",
-      "javax",
-      "com",
-      "org"
-   ],
-   "java.debug.settings.showStaticVariables": true,
-   "java.debug.settings.showQualifiedNames": false,
-   "java.configuration.runtimes": [
-      {
-         "name": "JavaSE-17",
-         "path": "/usr/lib/jvm/java-17-openjdk-amd64"
+  "coc.preferences.formatOnSave": true,
+
+  "java.enabled": true,
+  "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "/usr/lib/jvm/java-17-openjdk-amd64"
+    }
+  ],
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.completion.enabled": true,
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "com",
+    "org"
+  ],
+  "java.completion.favoriteStaticMembers": [
+    "org.junit.Assert.*",
+    "org.junit.Assume.*",
+    "org.junit.jupiter.api.Assertions.*",
+    "org.junit.jupiter.api.Assumptions.*",
+    "org.junit.jupiter.api.DynamicContainer.*",
+    "org.junit.jupiter.api.DynamicTest.*",
+    "org.mockito.Mockito.*",
+    "org.mockito.ArgumentMatchers.*",
+    "org.mockito.Answers.*",
+    "org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*",
+    "org.springframework.test.web.servlet.result.MockMvcResultMatchers.*"
+  ],
+  "java.signatureHelp.enabled": true,
+  "java.references.includeAccessors": true,
+  "java.codeGeneration.useBlocks": true,
+  "java.import.maven.enabled": true,
+  "java.maven.downloadSources": false,
+  "java.debug.settings.showStaticVariables": true,
+  "java.debug.settings.showQualifiedNames": false,
+  "java.trace.server": "off",
+
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.useLibraryCodeForTypes": true,
+
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+
+  "eslint.autoFixOnSave": true,
+  "prettier.requireConfig": true,
+
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": [
+        "haskell",
+        "lhaskell"
+      ],
+      "settings": {
+        "haskell": {
+          "checkParents": "CheckOnSave",
+          "checkProject": true,
+          "maxCompletions": 40,
+          "formattingProvider": "ormolu"
+        }
       }
-   ],
-   "java.enabled": true,
-   "java.codeGeneration.useBlocks": true,
-   "java.import.maven.enabled": true,
-   "java.maven.downloadSources": false,
-   "python.linting.enabled": true,
-   "snippets.ultisnips.pythonPrompt": false,
-   "languageserver": {
-      "clangd": {
-         "command": "clangd",
-         "filetypes": [
-            "c",
-            "cc",
-            "cpp",
-            "c++",
-            "objc",
-            "objcpp"
-         ],
-         "rootPatterns": [
-            ".clangd",
-            "compile_commands.json",
-            ".git/",
-            ".hg/"
-         ],
-         "initializationOptions": {
-            "cache": {
-               "directory": "/tmp/clangd"
-            }
-         }
-      }
-   }
+    },
+    "sql": {
+      "command": "sqls",
+      "filetypes": ["sql"],
+      "rootPatterns": [
+        ".git",
+        "sqls.yml"
+      ]
+    }
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
