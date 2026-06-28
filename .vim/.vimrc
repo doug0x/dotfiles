@@ -1,25 +1,15 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source ~/.vim/plug/plug.vim
 call plug#begin('~/.vim/plug')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'lervag/vimtex'
 Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-tree.lua', {'tag': 'v1.16.0'}
 Plug 'jamestthompson3/nvim-remote-containers'
-Plug 'shime/vim-livedown'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'eagletmt/neco-ghc'
-Plug 'omnisharp/omnisharp-vim'
-Plug 'andweeb/presence.nvim'
 
-Plug 'vim-test/vim-test'                      " exec tests
-Plug 'tpope/vim-dispatch'                     " assync exec
-Plug 'tpope/vim-projectionist'                " project nav
-Plug 'folke/which-key.nvim'                   " shortcuts
-Plug 'michaelb/sniprun', {'do': 'bash install.sh'} " exec paths
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -67,17 +57,23 @@ augroup END
 " You can't stop me
 cmap w!! w !sudo tee % 
 syntax enable
+
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
 let g:coc_global_extensions = [
   \ 'coc-java',
   \ 'coc-json',
   \ 'coc-yaml',
   \ 'coc-snippets',
-  \ 'coc-pairs'
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-prettier',
+  \ 'coc-pyright',
+  \ 'coc-sh',
+  \ 'coc-docker',
+  \ 'coc-angular'
   \ ]
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_compiler_method = 'latexrun'
 let maplocalleader = ","
 
 " General options
@@ -135,7 +131,6 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set signcolumn=yes
-let g:coc_global_extensions_dir="~/.vim/coc-settings.json"
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
@@ -359,34 +354,6 @@ nmap <silent> <leader>ta :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 
-
-"" Inserting header
-"  function! InsertJavaHeader()
-"     " get current dir relative to src
-"     let l:current_dir = expand('%:p:h') " get current dir
-"     let l:src_index = substitute(l:current_dir, '^.*src/', '', '') " get substring without src/
-"     let l:package_name = substitute(l:src_index, '/', '.', 'g') " replace / to .
-
-"     " create header
-"     let l:header = "package " . l:package_name . ";\n\n"
-"     if expand('%:t') =~ '^I.*\.java$'
-"        let l:header .= "public interface " . expand('%:t:r') . " {\n"
-"        let l:header .= "   \n"
-"        let l:header .= "}\n"
-"     else
-"        let l:header .= "public class " . expand('%:t:r') . " {\n"
-"        let l:header .= "   \n"
-"        let l:header .= "}\n"
-"     endif
-
-"     " insert header
-"     execute '0put =l:header'
-"  endfunction
-
-"  "" Map newfile
-"  autocmd BufNewFile *.java call InsertJavaHeader()
-
-
 " Create spring boot project
 " usage:
 " :SpringInit web,data-jpa,postgresql
@@ -394,6 +361,7 @@ command! -nargs=* SpringInit execute '!curl https://start.spring.io/starter.zip 
 
 " tree
 
+if has('nvim')
 lua <<EOF
 require("nvim-tree").setup({
   view = {
@@ -448,3 +416,4 @@ require("nvim-tree").setup({
 vim.api.nvim_set_keymap('n', '<C-q>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeFindFile<CR>', {noremap = true, silent = true})
 EOF
+endif
