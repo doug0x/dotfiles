@@ -87,5 +87,6 @@
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
