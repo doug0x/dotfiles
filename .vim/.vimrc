@@ -9,7 +9,7 @@ Plug 'nvim-tree/nvim-tree.lua', {'tag': 'v1.16.0'}
 Plug 'jamestthompson3/nvim-remote-containers'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
-
+Plug 'doug0x/codim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -359,8 +359,17 @@ nmap <silent> <leader>tv :TestVisit<CR>
 " :SpringInit web,data-jpa,postgresql
 command! -nargs=* SpringInit execute '!curl https://start.spring.io/starter.zip -d dependencies=' . <q-args> . ' -o /tmp/project.zip && unzip /tmp/project.zip'
 
-" tree
 
+" CODIM
+
+lua << EOF
+require("codim").setup({
+   width = 44,
+   keymaps = true,
+   })
+EOF
+
+" tree
 if has('nvim')
 lua <<EOF
 require("nvim-tree").setup({
